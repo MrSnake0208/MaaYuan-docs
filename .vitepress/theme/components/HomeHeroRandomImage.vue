@@ -125,7 +125,6 @@ watch(currentSrc, async () => {
 
 @media (max-width: 768px) {
   .image-tooltip {
-    opacity: 1;
     font-size: 11px;
     bottom: 2px;
   }

@@ -23,10 +23,10 @@ type UserAgentHighEntropyHint = 'architecture'
 
 const releaseFiles = {
   windows: {
-    x64: 'MaaYuan-win-x86_64-v2.1.1-beta.1.zip',
+    x64: 'MaaYuan-win-x86_64-vx.x.x-xxxx.zip',
   },
   macos: {
-    arm64: 'MaaYuan-macos-aarch64-v2.1.1-beta.1.tar.gz',
+    arm64: 'MaaYuan-macos-aarch64-vx.x.x-xxxx.tar.gz',
   },
 } as const
 

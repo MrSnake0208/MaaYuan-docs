@@ -1,4 +1,4 @@
-# 首次启动<Badge type="warning" text="简单" />
+# 首次启动<Badge type="warning" text="新手" />
 
 ::: tip
 本文说明首次打开 `MaaYuan` 时的依赖库检测、启动方式、权限设置与模拟器基础要求。

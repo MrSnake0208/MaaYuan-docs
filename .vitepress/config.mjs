@@ -88,8 +88,7 @@ export default defineConfig({
             items: [
               { text: "当前活动", link: "/Activity/Current" },
               { text: "常驻活动", link: "/Activity/Permanent" },
-              { text: "2026年活动存档", link: "/Activity/2026EventArchiv"},
-              { text: "2025年活动存档", link: "/Activity/2025EventArchive" },
+              { text: "活动存档", link: "/Activity/EventArchive"},
 
             ],
           },

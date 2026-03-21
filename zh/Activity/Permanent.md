@@ -1,7 +1,8 @@
-# 常驻任务<Badge type="warning" text="常驻" />
+# 常驻任务<Badge type="warning" text="任务" />
 
 ::: tip
-本文仅展示常驻活动信息。
+大部分任务可点击任务名称右侧的齿轮⚙️，进行具体设置以适配不同需求。
+部分任务配置了图文或视频版，请自行前往[B站](https://space.bilibili.com/3690998968355771)或[小红书](https://www.xiaohongshu.com/user/profile/685e3301000000001b0229ed)查阅
 :::
 
 ## 启动/关闭游戏

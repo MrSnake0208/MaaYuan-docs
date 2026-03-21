@@ -1,11 +1,9 @@
 # 下载与安装<Badge type="tip" text="新手" />
 
 ::: tip
-本文用于第一次安装`MaaYuan`，包含版本选择、解压规范与运行环境配置。
+一句话教学：下载解压`MaaYuan`本体 +下载安装两个`运行环境`。
+下载&安装&更新均配置了图文或视频版，请自行前往[B站](https://space.bilibili.com/3690998968355771)或[小红书](https://www.xiaohongshu.com/user/profile/685e3301000000001b0229ed)查阅
 :::
-
-> 一句话教学：下载解压`MaaYuan`本体 +下载安装两个`运行环境`。
-> 下载&安装&更新均配置了图文或视频版，请自行前往[B站](https://space.bilibili.com/3690998968355771)或[小红书](https://www.xiaohongshu.com/user/profile/685e3301000000001b0229ed)查阅
 
 ## 一、确认适用系统
 

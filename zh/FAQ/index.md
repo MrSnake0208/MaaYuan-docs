@@ -176,5 +176,5 @@ netstat -aon|findstr 5555
 - 某些自动检测或关闭模拟器操作被系统拦截
 
 ::: warning
-如果你已经清理过运行库、分辨率、ADB、作业目录这些高频问题，仍然无法解决，请按 [系统与反馈](../Manual/SystemAndFeedback) 中的步骤导出 `maa.log` 后再反馈。
+如果你已经清理过运行库、分辨率、ADB、作业目录这些高频问题，仍然无法解决，请按 [反馈方式](../Manual/Feedback) 中的步骤导出 `maa.log` 后再反馈。
 :::

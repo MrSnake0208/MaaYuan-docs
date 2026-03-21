@@ -1,7 +1,7 @@
-# 往期活动<Badge type="warning" text="活动" />
+# 活动存档<Badge type="warning" text="活动" />
 
 ::: tip
-本文仅展示往期活动版本信息。
+本文仅存档往期活动版本信息。
 :::
 
 ### 咪教模拟器

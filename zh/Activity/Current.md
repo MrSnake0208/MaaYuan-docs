@@ -1,15 +1,15 @@
-# 当前活动<Badge type="warning" text="活动" />
+# 当前活动<Badge type="warning" text="任务" />
 
 ::: info
-本文仅展示当前活动的任务介绍、反馈的问题和解决方案。
+本文仅展示当前活动任务介绍、反馈的问题和解决方案。
 当前活动任务的上线时间无法固定，还请大家理解，请勿催促或艾特制作组（老师），欢迎有能力的小伙伴提交 PR 共同建设 `MaaYuan` ！
 :::
 
-## 活动前的常见提问
+::: details ## 关于活动任务的TIP</summary>
 
-### 新活动会上吗？
+### 这次新活动会上吗？
 
-- 会，许愿入口：[MaaYuan功能许愿收集表](https://my.feishu.cn/share/base/form/shrcn1zPtP9CZZT35erTCarjEOg)。
+- 不确定，要看是否有老师提交PR，许愿入口：[MaaYuan功能许愿收集表](https://my.feishu.cn/share/base/form/shrcn1zPtP9CZZT35erTCarjEOg)。
 - 现在就要，付费定制：请在交流群联系-【机】Maa鸢助理为您服务。
 
 ### 麻圆不听指挥怎么办？
@@ -25,6 +25,7 @@
 3. 搜索活动相关名称，选中所需任务并点击添加；
 4. 打开任务配置完成设置；
 5. 开始运行。
+:::
 
 ## 当前活动
 

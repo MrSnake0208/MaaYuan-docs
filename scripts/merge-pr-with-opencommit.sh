@@ -132,8 +132,8 @@ log "将 PR 变更 squash 到临时分支"
 git merge --squash "$PR_BRANCH"
 
 if [[ -n "$(git status --porcelain)" ]]; then
-  log "调用 $OPENCOMMIT_CMD 生成临时 commit"
-  "$OPENCOMMIT_CMD" --yes
+  log "调用 $OPENCOMMIT_CMD 生成临时 commit（强制禁用 git push）"
+  OCO_GITPUSH=false "$OPENCOMMIT_CMD" --yes
 else
   fail 'git merge --squash 后没有待提交变更，已取消'
 fi

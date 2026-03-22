@@ -1,0 +1,39 @@
+on:
+  push:
+    branches-ignore: [main, master, dev]
+  pull_request:
+    types: [opened, synchronize]
+  # 新增：评论触发
+  issue_comment:
+    types: [created]
+
+jobs:
+  opencommit:
+    # 只有是 PR 里的评论，且评论内容包含 /opencommit 时才触发
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/opencommit')
+    timeout-minutes: 10
+    name: OpenCommit
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 关键步骤：获取 PR 的具体分支代码，而不仅仅是主分支
+      - uses: actions/checkout@v3
+        with:
+          ref:  ${{ github.event.pull_request.head.sha || github.event.issue.pull_request.url }}
+          fetch-depth: 0
+
+      - name: Run OpenCommit
+        uses: di-sukharev/opencommit@github-action-v1.0.4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          OCO_API_KEY: ${{ secrets.OCO_API_KEY }}
+          OCO_AI_PROVIDER: deepseek
+          OCO_MODEL: deepseek-chat
+          OCO_LANGUAGE: zh_CN
+          # ... 其他你本地的配置项 ...

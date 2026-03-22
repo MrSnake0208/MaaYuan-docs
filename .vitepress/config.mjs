@@ -1,8 +1,13 @@
-import { defineConfig } from "vitepress";
-import { announcementNavMenuItems } from "./shared/announcementNav.mjs";
+import { createMarkdownRenderer, defineConfig } from "vitepress";
+import { createAnnouncementNavMenuItems } from "./shared/announcementNav.mjs";
 import { navPopoverData } from "./shared/navPopover.mjs";
 import { head } from "./config/head";
 import { heroRandomImagesPlugin } from "./plugins/heroRandomImages.mjs";
+
+const announcementMarkdownRenderer = await createMarkdownRenderer(process.cwd());
+const announcementNavMenuItems = createAnnouncementNavMenuItems(content =>
+  announcementMarkdownRenderer.render(content)
+);
 
 export default defineConfig({
   title: "MaaYuan Docs",
@@ -40,7 +45,7 @@ export default defineConfig({
             text: '📖 使用手册',
             items: [
               { text: '快速开始', link: '/Started/Install' },
-              { text: '使用手册', link: '/Manual/Overview' },
+              { text: '关于MaaYuan', link: '/Manual/Overview' },
               { text: '功能介绍', link: '/Features/InstancesAndTaskList' },
               { text: '任务介绍', link: '/Activity/Current' },
               { text: '常见问题', link: '/FAQ/' },

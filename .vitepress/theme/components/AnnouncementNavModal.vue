@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { renderMarkdown } from '../utils/md.js'
 import BaseModal from './BaseModal.vue'
 
 interface AnnouncementDetail {
@@ -15,7 +14,7 @@ const activeHtml = ref('')
 function openAnnouncement(item: AnnouncementDetail) {
   isVisible.value = true
   activeTitle.value = item.title
-  activeHtml.value = renderMarkdown(item.content)
+  activeHtml.value = item.content
 }
 
 function closeAnnouncement() {

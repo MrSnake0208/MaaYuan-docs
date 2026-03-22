@@ -1,0 +1,61 @@
+name: 'OpenCommit Action'
+
+on:
+  # 1. 当有新的 PR 提交或更新时自动触发
+  pull_request:
+    types: [opened, synchronize]
+  # 2. 当在 PR 下方发表评论时触发
+  issue_comment:
+    types: [created]
+
+jobs:
+  opencommit:
+    # 逻辑：如果是 PR 事件，直接运行；如果是评论事件，必须包含 /opencommit 且在 PR 页面中
+    if: |
+      github.event_name == 'pull_request' || 
+      (github.event.issue.pull_request && contains(github.event.comment.body, '/opencommit'))
+    
+    timeout-minutes: 10
+    name: OpenCommit
+    runs-on: ubuntu-latest
+    
+    # 授予写入权限，以便 Action 能在 PR 中发表评论
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          # 动态获取 ref：
+          # 如果是 pull_request 事件，取 PR 的最新提交 (head.sha)
+          # 如果是 issue_comment 事件，取 refs/pull/编号/head
+          ref: ${{ github.event.pull_request.head.sha || format('refs/pull/{0}/head', github.event.issue.number) }}
+          fetch-depth: 0
+
+      - name: Run OpenCommit
+        uses: di-sukharev/opencommit@github-action-v1.0.4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          # --- 你的本地配置 (DeepSeek) ---
+          OCO_OPENAI_API_KEY: ${{ secrets.OCO_API_KEY }}
+          OCO_AI_PROVIDER: deepseek
+          OCO_MODEL: deepseek-chat
+          OCO_LANGUAGE: zh_CN
+          OCO_PROMPT_MODULE: conventional-commit
+          OCO_EMOJI: false
+          OCO_DESCRIPTION: false
+          OCO_ONE_LINE_COMMIT: false
+          OCO_TOKENS_MAX_INPUT: 4096
+          OCO_TOKENS_MAX_OUTPUT: 500
+
+          # 如果 DeepSeek 官方 API 地址有变，可取消下方注释
+          OCO_OPENAI_BASE_PATH: 'https://api.deepseek.com'

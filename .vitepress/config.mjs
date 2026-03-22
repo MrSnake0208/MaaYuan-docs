@@ -42,6 +42,7 @@ export default defineConfig({
               { text: '快速开始', link: '/Started/Install' },
               { text: '使用手册', link: '/Manual/Overview' },
               { text: '功能介绍', link: '/Features/InstancesAndTaskList' },
+              { text: '任务介绍', link: '/Activity/Current' },
               { text: '常见问题', link: '/FAQ/' },
             ],
           },
@@ -69,8 +70,10 @@ export default defineConfig({
             text: "📘 使用手册",
             items: [
               { text: "项目概览", link: "/Manual/Overview" },
-              { text: "任务总览", link: "/Manual/TaskOverview" },
-              { text: "系统与反馈", link: "/Manual/SystemAndFeedback" },
+              { text: "系统支持", link: "/Manual/SystemSupport" },
+              { text: "反馈方式", link: "/Manual/Feedback" },
+              { text: "公告存档", link: "/Manual/AnnouncementArchive" },
+              { text: "加入我们", link: "/Manual/JoinUs" },
             ],
           },
           {

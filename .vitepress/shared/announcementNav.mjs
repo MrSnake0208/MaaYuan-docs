@@ -1,6 +1,6 @@
 export const announcementNavEntries = [
   {
-    text: '公告1',
+    text: '内测招募',
     content: `
           <p>大家好！</p>
           <p>
@@ -30,22 +30,6 @@ export const announcementNavEntries = [
             你的每一次反馈，都是 MaaYuan 变得更好的关键！<br />
             期待与你一起，打造最稳、最聪明的鸢系长草助手 💙
           </p>
-    `.trim(),
-  },
-  {
-    text: '公告2',
-    content: `
-## 这里写公告 2 的标题
-
-你可以在这个位置自由编辑公告 2 的内容。
-    `.trim(),
-  },
-  {
-    text: '公告3',
-    content: `
-## 这里写公告 3 的标题
-
-如果暂时没有内容，也可以先写一段占位说明。
     `.trim(),
   },
 ]

@@ -6,3 +6,7 @@ bash scripts/upload-doc-images-to-r2.sh \
     --rewrite-markdown \
     --public-base-url https://files.maayuan.top
 ```
+
+```bash
+bash scripts/merge-pr-with-opencommit.sh 26
+```

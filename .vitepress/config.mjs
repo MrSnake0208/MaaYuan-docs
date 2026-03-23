@@ -72,10 +72,10 @@ export default defineConfig({
             ],
           },
           {
-            text: "📘 使用手册",
+            text: "📘 关于MaaYuan",
             items: [
               { text: "项目概览", link: "/Manual/Overview" },
-              { text: "系统支持", link: "/Manual/SystemSupport" },
+              // { text: "系统支持", link: "/Manual/SystemSupport" },
               { text: "反馈方式", link: "/Manual/Feedback" },
               { text: "公告存档", link: "/Manual/AnnouncementArchive" },
               { text: "加入我们", link: "/Manual/JoinUs" },

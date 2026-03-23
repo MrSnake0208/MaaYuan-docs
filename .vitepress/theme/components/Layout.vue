@@ -85,8 +85,9 @@ provide('hero-image-slot-exists', heroImageSlotExists)
       <template #sidebar-nav-after><slot name="sidebar-nav-after" /></template>
     </VPSidebar>
 
-    <VPContent>
-      <template #page-top><slot name="page-top" /></template>
+    <transition name="page" mode="out-in">
+      <VPContent :key="route.path">
+        <template #page-top><slot name="page-top" /></template>
       <template #page-bottom><slot name="page-bottom" /></template>
 
       <template #not-found><slot name="not-found" /></template>
@@ -113,6 +114,7 @@ provide('hero-image-slot-exists', heroImageSlotExists)
       <template #aside-ads-before><slot name="aside-ads-before" /></template>
       <template #aside-ads-after><slot name="aside-ads-after" /></template>
     </VPContent>
+    </transition>
 
     <VPFooter />
     <slot name="layout-bottom" />

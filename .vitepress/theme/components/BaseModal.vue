@@ -32,23 +32,29 @@ function handleOverlayClick(event: MouseEvent) {
 
 <template>
   <Teleport :to="teleportTo">
-    <div
-      v-if="isVisible"
-      class="base-modal-overlay"
-      :class="overlayClass"
-      @click="handleOverlayClick"
-      @wheel="$emit('wheel', $event)"
-    >
+    <transition name="modal-fade">
       <div
-        v-if="useContentWrapper"
-        class="base-modal-content"
-        :class="contentClass"
-        @click.stop
+        v-if="isVisible"
+        class="base-modal-overlay"
+        :class="overlayClass"
+        @click="handleOverlayClick"
+        @wheel="$emit('wheel', $event)"
       >
-        <slot />
+        <transition name="modal-scale">
+          <div
+            v-if="isVisible && useContentWrapper"
+            class="base-modal-content"
+            :class="contentClass"
+            @click.stop
+          >
+            <slot />
+          </div>
+        </transition>
+        <template v-if="!useContentWrapper">
+          <slot />
+        </template>
       </div>
-      <slot v-else />
-    </div>
+    </transition>
   </Teleport>
 </template>
 

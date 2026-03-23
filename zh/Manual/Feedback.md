@@ -1,4 +1,4 @@
-# 反馈方式<Badge type="info" text="反馈" />
+# 反馈方式<Badge type="danger" text="反馈" />
 
 ## 导出日志的方式
 

@@ -14,7 +14,7 @@ hero:
       link: /Started/Install
     - theme: alt
       text: 开发手册
-      link: /Developer/
+      link: /Developer/0.0-MaaYuan零基础开发指南
 
 features:
   []

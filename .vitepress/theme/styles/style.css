@@ -332,7 +332,7 @@
   .Layout.sidebar-scope-manual .VPSidebar .group:nth-of-type(2),
   .Layout.sidebar-scope-features .VPSidebar .group:nth-of-type(3),
   .Layout.sidebar-scope-activity .VPSidebar .group:nth-of-type(4),
-  .Layout.sidebar-scope-faq .VPSidebar .group:nth-of-type(5),
+  .Layout.sidebar-scope-faq .VPSidebar .group:nth-of-type(1),
   .Layout.sidebar-scope-developer .VPSidebar .group:nth-of-type(6) {
     display: block;
   }

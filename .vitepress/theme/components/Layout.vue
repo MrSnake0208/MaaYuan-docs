@@ -43,7 +43,7 @@ const sidebarScopeClass = computed(() => {
   if (path.startsWith('/Activity/'))
     return 'sidebar-scope-activity'
 
-  if (normalizedPath === '/FAQ')
+  if (path.startsWith('/FAQ/') || normalizedPath === '/FAQ')
     return 'sidebar-scope-faq'
 
   if (normalizedPath === '/Developer')

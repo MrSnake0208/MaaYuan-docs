@@ -87,6 +87,20 @@ export default defineConfig({
               ],
             },
           ],
+          "/FAQ/": [
+            {
+              text: "💫 常见问题",
+              items: [
+                { text: "FAQ 总览", link: "/FAQ/" },
+                { text: "有问题", link: "/FAQ/01-general-issues" },
+                { text: "下载/安装问题", link: "/FAQ/02-installation-issues" },
+                { text: "启动问题", link: "/FAQ/03-startup-issues" },
+                { text: "连接错误", link: "/FAQ/04-connection-issues" },
+                { text: "运行问题", link: "/FAQ/05-runtime-issues" },
+                { text: "作业问题", link: "/FAQ/06-homework-issues" },
+              ],
+            },
+          ],
           "/": [
             {
               text: "🚀 快速开始",

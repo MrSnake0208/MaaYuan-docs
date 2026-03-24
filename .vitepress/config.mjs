@@ -45,7 +45,7 @@ export default defineConfig({
             items: [
               { text: '快速开始', link: '/Started/Install' },
               { text: '关于MaaYuan', link: '/Manual/Overview' },
-              { text: '功能介绍', link: '/Features/InstancesAndTaskList' },
+              { text: '功能介绍', link: '/Features/HomeInterface' },
               { text: '任务介绍', link: '/Activity/Current' },
               { text: '常见问题', link: '/FAQ/' },
             ],
@@ -122,11 +122,16 @@ export default defineConfig({
             {
               text: "⚙️ 功能介绍",
               items: [
+                { text: "主页界面", link: "/Features/HomeInterface" },
                 { text: "实例与任务列表", link: "/Features/InstancesAndTaskList" },
                 { text: "日常任务说明", link: "/Features/DailyTasks" },
                 { text: "进阶功能说明", link: "/Features/AdvancedTasks" },
+                { text: "自动战斗", link: "/Features/AutoBattle" },
+                { text: "录制作业", link: "/Features/RecordHomework" },
                 { text: "通知设置", link: "/Features/Notifications" },
                 { text: "作业功能", link: "/Features/HomeworkShare" },
+                { text: "设置界面", link: "/Features/Settings" },
+                { text: "多开操作", link: "/Features/MultiInstance" },
               ],
             },
             {

@@ -5,7 +5,7 @@
 下载&安装&更新均配置了图文或视频版，请自行前往[B站](https://space.bilibili.com/3690998968355771)或[小红书](https://www.xiaohongshu.com/user/profile/685e3301000000001b0229ed)查阅
 :::
 
-## 一、确认适用系统
+## 确认适用系统
 
 | **系统** | **Windows** | **macOS**|
 | --- | --- | --- |
@@ -22,7 +22,7 @@
 - Linux、Android、iOS 以及其他未知平台当前均不支持。
 :::
 
-## 二、下载渠道说明
+## 下载渠道说明
 
 - 【最省事】[Mirror酱](https://mirrorchyan.com/zh/projects?rid=MaaYuan&source=navtop)下载，详细介绍请查阅【常见问题-Mirror酱是什么】。
 - 【第一手】[GitHub](https://github.com/syoius/MaaYuan)下载，需要科学上网，如果喜欢`MaaYuan`，请在项目右上角点亮`Star`支持。
@@ -30,7 +30,7 @@
 
 <SmartDownloadChannels />
 
-## 三、解压安装
+## 解压安装
 
 ### Windows
 
@@ -44,7 +44,7 @@
 - 尽量避免路径含中文。
 - 下载目录可以作为临时解压位置，但正式使用仍建议放在独立目录。
 
-## 四、安装运行环境（依赖库）
+## 安装运行环境（依赖库）
 
 | **系统** | **Windows** | **macOS** |
 | --------------------- | -------------------- | -------------------- |
@@ -55,9 +55,9 @@
 从 `v2.0.0` 起，MaaYuan 需要 `.NET 10` 及以上运行库，原来的 `.NET 8` 已不再满足要求。
 :::
 
-## 五、下一步
+## 下一步
 
-安装完成后，继续阅读：
+安装完成后，请继续阅读：
 
 - [首次启动](./FirstLaunch)
 - [连接与更新](./ConnectionAndUpdate)

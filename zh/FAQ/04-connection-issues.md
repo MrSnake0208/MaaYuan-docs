@@ -20,19 +20,16 @@
 
     - 检查是否打开了adb连接：`设置` - `高级` - `Android调试（ADB）`
 
-  -     <details>
-            <summary>MuMu模拟器（点击前方▶️ 展开）</summary>
-            - WIN系统-MuMu模拟器：[MuMu模拟器如何连接 adb？_MuMu模拟器_安卓模拟器](https://mumu.163.com/help/20240807/40912_1073151.html)
-        
-        - MAC系统-MuMu模拟器Pro：[如何连接ADB？_MuMu模拟器_安卓模拟器](https://mumu.163.com/mac/tutorials/connect-adb.html)
-        
-        - [MuMu模拟器12如何连接adb](https://mumu.163.com/help/20240807/40912_1073151.html)
-        
-        - [使用UU加速器后无法通过ADB连接MuMu12](https://mumu.163.com/help/20240807/40912_1144608.html)
-        
-        - [MuMu模拟器桥接模式连接adb教程](https://mumu.163.com/help/20240807/40912_1164744.html)
-        - [MuMu模拟器12adb远程调试功能教程](https://mumu.163.com/help/20240902/40912_1178199.html)
-          </details>
+::: details MuMu 模拟器相关文档
+
+- WIN系统-MuMu模拟器：[MuMu模拟器如何连接 adb？_MuMu模拟器_安卓模拟器](https://mumu.163.com/help/20240807/40912_1073151.html)
+- MAC系统-MuMu模拟器Pro：[如何连接ADB？_MuMu模拟器_安卓模拟器](https://mumu.163.com/mac/tutorials/connect-adb.html)
+- [MuMu模拟器12如何连接adb](https://mumu.163.com/help/20240807/40912_1073151.html)
+- [使用UU加速器后无法通过ADB连接MuMu12](https://mumu.163.com/help/20240807/40912_1144608.html)
+- [MuMu模拟器桥接模式连接adb教程](https://mumu.163.com/help/20240807/40912_1164744.html)
+- [MuMu模拟器12adb远程调试功能教程](https://mumu.163.com/help/20240902/40912_1178199.html)
+
+:::
 
 
 ## 更新过后连不上模拟器
@@ -65,34 +62,33 @@
 基础解决步骤
 关闭`MaaYuan`→ 打开任务管理器（Ctrl+Shift+Esc）→ 结束所有名称含`adb`的进程→ 重启`MaaYuan`，若仍失败，下载运行工具：`如果提示adb文件被占用请打开我.bat`
 
-**高级排查（日志报错时）**（点击前方▶️ 展开）
+::: details 高级排查（日志报错时）
 
 典型错误特征：
 
-- ```
-  error: cannot bind to 127.0.0.1:5037（端口占用）
-  adb server version不匹配
-  ```
+```txt
+error: cannot bind to 127.0.0.1:5037（端口占用）
+adb server version不匹配
+```
 
-
-**定位占用程序**：
+**定位占用程序：**
 
 - 按`Win+R`输入`cmd`回车
-
 - 执行命令（示例）：
 
-  - ```
-    netstat -aon|findstr 5037  # ADB守护端口
-    netstat -aon|findstr 5555  # 模拟器常用端口
-    ```
+  ```sh
+  netstat -aon|findstr 5037  # ADB守护端口
+  netstat -aon|findstr 5555  # 模拟器常用端口
+  ```
 
 - 记录输出中的`PID`（末尾数字）
-
 - 在任务管理器（需开启PID显示）找到对应PID进程，结束可疑程序
 
 **附：开启任务管理器PID显示**
 
 - 右键任务管理器表头 → 勾选`PID`
+
+:::
 
 ## 关闭外置VPN
 
@@ -106,12 +102,17 @@
 
 - 尝试以管理员权限启动`MaaYuan`（右键`MaaYuan.exe`，选以管理员身份运行）再检测；
 - 仍失败，参考手动设置，确认模拟器和连接地址在下方列表。
-- 支持设备及地址（点击前方▶️ 展开）
+- 支持设备及地址：
+
+  ::: details 查看常见连接地址
+
   - BlueStacks 5：`127.0.0.1:5555/5556/5565/5575/5585/5595/5554`
   - MuMu 模拟器 12：`127.0.0.1:16384/16416/16448/16480/16512/16544/16576`
   - 雷电模拟器 9：`emulator-5554/5556/5558/5560`, `127.0.0.1:5555/5557/5559/5561`
   - 夜神模拟器：`127.0.0.1:62001/59865`
   - 逍遥模拟器：`127.0.0.1:21503`
+
+  :::
 
 手动连接设置
 
@@ -120,13 +121,17 @@
 - 导入 ADB路径：点击 Adb 路径后的“导入”，在模拟器的安装路径中找到 adb 的 exe 文件（如 adb.exe），点击打开；
 - 模拟器ADB地址：本机模拟器连接地址为 127.0.0.1:<端口号> 或 emulator-<四位数字>。
 
-- 常见模拟器地址（点击前方▶️ 展开）
+- 常见模拟器地址：
+
+  ::: details 查看常见模拟器地址
 
   - BlueStacks 5：`127.0.0.1:5555/5556/5565/5575/5585/5595/5554`
   - MuMu 模拟器 12：`127.0.0.1:16384/16416/16448/16480/16512/16544/16576`
   - 雷电模拟器 9：`emulator-5554/5556/5558/5560`, `127.0.0.1:5555/5557/5559/5561`
   - 夜神模拟器：`127.0.0.1:62001/59865`
   - 逍遥模拟器：`127.0.0.1:21503`
+
+  :::
 
 - 替换Adb（解决连接/报错问题）：
 
@@ -157,31 +162,33 @@
 
 如果显示**依赖安装失败**，请尝试手动安装依赖库。
 
-- **手动安装依赖库方法：**（点击前方▶️ 展开）
-  - 注意终端内均为英文符号
+- **手动安装依赖库方法：**
 
+  ::: details 查看手动安装步骤
+
+  - 注意终端内均为英文符号
   - win+R，输入cmd，回车打开终端
   - 先输入`D:`/`E:`/`F:`，回车，切换到MaaYuan所在的盘。例如在D盘，则输入`D:`，回车
-- ![https://docimg2.docs.qq.com/image/AgAABTTp4UWJHEwtrRdCJbAApElzBVcY.png?w=636&h=273](https://docimg2.docs.qq.com/image/AgAABTTp4UWJHEwtrRdCJbAApElzBVcY.png?w=636&h=273)
+  - ![https://docimg2.docs.qq.com/image/AgAABTTp4UWJHEwtrRdCJbAApElzBVcY.png?w=636&h=273](https://docimg2.docs.qq.com/image/AgAABTTp4UWJHEwtrRdCJbAApElzBVcY.png?w=636&h=273)
 
-切换成功后，输入以下内容：
+  切换成功后，输入以下内容：
 
-- ```
+  ```sh
   D:\MaaYuan-win-x86_64-v0.9.13-beta.7\python\python.exe -m pip install maafw pandas openpyxl loguru opencv-python zhconv -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
+  注意：需要把`\python`前面的内容改成自己 MaaYuan 所在的路径（能看到 `python` 文件夹的这一页）。
 
-注意：需要把`\python`前面的内容改成自己maa所在的路径（能看到python文件夹的这一页），
+  例如：
 
-例如：
-
-- ```
+  ```sh
   D:\麻园\MaaYuan-win-x86_64-v0.9.13-beta.7\python\python.exe -m pip install maafw pandas openpyxl loguru opencv-python zhconv -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
   - 输入完成后回车，耐心等待安装完毕。
-
   - 之后打开`MaaYuan`，等待显示依赖安装成功即可。
+
+  :::
 
 - 如果显示因网络问题失败，尝试将-i 后的地址更换其它镜像源，如：`https://mirrors.aliyun.com/pypi/simple`
 

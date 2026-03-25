@@ -81,6 +81,7 @@ BASE_BRANCH=""
 TEMP_BRANCH=""
 BODY_FILE=""
 TEMP_BRANCH_CREATED=0
+MERGE_COMPLETED=0
 
 cleanup() {
   if [[ -n "${BODY_FILE:-}" && -f "${BODY_FILE:-}" ]]; then
@@ -101,7 +102,10 @@ cleanup() {
       git switch "$BASE_BRANCH" >/dev/null 2>&1 || true
     fi
 
-    git branch -D "$TEMP_BRANCH" >/dev/null 2>&1 || true
+    if [[ "${MERGE_COMPLETED:-0}" -eq 1 ]]; then
+      log "删除临时分支：$TEMP_BRANCH"
+      git branch -D "$TEMP_BRANCH" >/dev/null 2>&1 || true
+    fi
   fi
 }
 
@@ -163,5 +167,6 @@ fi
 
 log "开始执行 gh ${MERGE_ARGS[*]}"
 gh "${MERGE_ARGS[@]}"
+MERGE_COMPLETED=1
 
 log "PR #$PR_NUMBER 已完成 squash merge"

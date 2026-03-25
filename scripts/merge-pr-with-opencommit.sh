@@ -102,6 +102,16 @@ cleanup() {
       git switch "$BASE_BRANCH" >/dev/null 2>&1 || true
     fi
 
+    if [[ "${MERGE_COMPLETED:-0}" -eq 1 && -n "$BASE_BRANCH" ]]; then
+      log "同步最新远端引用：origin/$BASE_BRANCH"
+      git fetch origin "$BASE_BRANCH" >/dev/null 2>&1 || true
+
+      if [[ "$(git branch --show-current || true)" == "$BASE_BRANCH" ]]; then
+        log "快进更新本地 base 分支：$BASE_BRANCH"
+        git pull --ff-only origin "$BASE_BRANCH" >/dev/null 2>&1 || true
+      fi
+    fi
+
     if [[ "${MERGE_COMPLETED:-0}" -eq 1 ]]; then
       log "删除临时分支：$TEMP_BRANCH"
       git branch -D "$TEMP_BRANCH" >/dev/null 2>&1 || true

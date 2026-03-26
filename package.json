@@ -2,7 +2,9 @@
   "scripts": {
     "docs:dev": "vitepress dev --host",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "sync:maayuan-release-note": "node scripts/sync-maayuan-release-note.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
     "vitepress": "^1.6.4"

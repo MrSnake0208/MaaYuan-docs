@@ -5,7 +5,8 @@ export const navPopoverData = {
   "description": "v2.1.1-beta.3",
   "highlights": [
     "支持【漏钟夜浅】自动领取签到奖励",
-    "修复【他的传闻】不设置优先级时意外退出的问题"
+    "修复【他的传闻】不设置优先级时意外退出的问题",
+    "测试"
   ],
   "ariaLabel": "查看当前项目版本与更新说明"
 }

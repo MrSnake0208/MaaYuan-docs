@@ -3,7 +3,7 @@ import { dirname, resolve } from 'node:path'
 import process from 'node:process'
 
 const DEFAULT_ARIA_LABEL = '查看当前项目版本与更新说明'
-const DEFAULT_TITLE = '更新渠道 ✨最新正式版✨'
+const DEFAULT_TITLE = '更新渠道 ✨最新版本✨'
 
 function normalizeLine(line) {
   return line
@@ -42,13 +42,9 @@ function extractHighlights(body) {
   return highlights
 }
 
-function isStableTag(tagName = '') {
-  return !/(alpha|beta|rc|preview|nightly)/i.test(tagName)
-}
-
-export function selectLatestStableRelease(releases) {
+export function selectLatestRelease(releases) {
   return releases
-    .filter(release => !release.prerelease && !release.draft && isStableTag(release.tag_name))
+    .filter(release => !release.draft)
     .sort((left, right) => new Date(right.published_at) - new Date(left.published_at))[0]
 }
 
@@ -106,10 +102,10 @@ async function main() {
     throw new Error('缺少 --release-json 参数')
 
   const payload = JSON.parse(await readFile(resolve(releaseJsonPath), 'utf8'))
-  const release = Array.isArray(payload) ? selectLatestStableRelease(payload) : payload
+  const release = Array.isArray(payload) ? selectLatestRelease(payload) : payload
 
   if (!release)
-    throw new Error('未找到可用的正式版 release')
+    throw new Error('未找到可用的 release')
 
   await writeNavPopoverFile(resolve(outputPath), release)
 }

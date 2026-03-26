@@ -8,7 +8,7 @@ import { promisify } from 'node:util'
 
 import {
   createNavPopoverData,
-  selectLatestStableRelease,
+  selectLatestRelease,
   writeNavPopoverFile,
 } from '../scripts/sync-maayuan-release-note.mjs'
 
@@ -33,7 +33,7 @@ test('createNavPopoverData maps latest release fields into nav popover content',
 
   assert.deepEqual(navPopoverData, {
     badgeText: '✨ v2.1.3',
-    title: '更新渠道 ✨最新正式版✨',
+    title: '更新渠道 ✨最新版本✨',
     description: 'MaaYuan 2.1.3',
     highlights: [
       '修复连接不稳定问题',
@@ -45,8 +45,8 @@ test('createNavPopoverData maps latest release fields into nav popover content',
   })
 })
 
-test('selectLatestStableRelease ignores prerelease entries and picks the newest stable release', () => {
-  const release = selectLatestStableRelease([
+test('selectLatestRelease picks the newest non-draft release even when it is beta', () => {
+  const release = selectLatestRelease([
     {
       tag_name: 'v2.1.1-beta.3',
       prerelease: false,
@@ -67,7 +67,7 @@ test('selectLatestStableRelease ignores prerelease entries and picks the newest 
     },
   ])
 
-  assert.equal(release.tag_name, 'v2.1.0')
+  assert.equal(release.tag_name, 'v2.1.1-beta.3')
 })
 
 test('writeNavPopoverFile falls back when release body is empty', async () => {

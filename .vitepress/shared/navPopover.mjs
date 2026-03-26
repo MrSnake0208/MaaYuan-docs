@@ -1,14 +1,13 @@
 // 由 scripts/sync-maayuan-release-note.mjs 自动生成，请勿手动编辑
 export const navPopoverData = {
-  "badgeText": "✨ v1.0.2",
-  "title": "更新渠道 ✨最新正式版✨",
-  "description": "v1.0.2",
+  "badgeText": "✨ v2.1.1-beta.3",
+  "title": "更新渠道 ✨最新版本✨",
+  "description": "v2.1.1-beta.3",
   "highlights": [
-    "这个月， MaaYuan 所依赖的底层识图&触控框架进行了大版本更新，很多功能会受到影响，因此先发布一个全旧稳定（？）版，方便大家顺利地月底赶作业 & 月初打洞窟。开发组这边正在闭关进行新框架的适配和重构，争取让 MaaYuan 借此机会脱胎换骨一下。",
-    "自动导航。支持只领取时辰不扫荡。可选择扫荡小物或普通配饰或琴轸钥",
-    "适配心纸营建派遣 & 首通。增加可派遣密探-颜良",
-    "【🌾 望祈丰年】 & 【🐉 天下隐光 V2】",
-    "密探化极支持指定密探品质"
+    "支持【漏钟夜浅】自动领取签到奖励",
+    "修复【他的传闻】不设置优先级时意外退出的问题",
+    "Full Changelog: https://github.com/syoius/MaaYuan/compare/v2.1.1-beta.2...v2.1.1-beta.3",
+    "已有 Mirror酱 CDK？前往 Mirror酱 高速下载"
   ],
   "ariaLabel": "查看当前项目版本与更新说明"
 }

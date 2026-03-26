@@ -34,6 +34,9 @@ function extractHighlights(body) {
     if (!line || /^[-—]{3,}$/.test(line))
       continue
 
+    if (/^full changelog:/i.test(line) || /mirror酱/i.test(line))
+      continue
+
     highlights.push(line)
     if (highlights.length === 5)
       break

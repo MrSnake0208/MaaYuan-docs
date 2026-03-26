@@ -121,6 +121,26 @@ test('createNavPopoverData prefers detailed lines after section headings', () =>
   ])
 })
 
+test('createNavPopoverData filters Full Changelog and Mirror酱 promotion lines', () => {
+  const navPopoverData = createNavPopoverData({
+    tag_name: 'v2.1.1-beta.3',
+    name: 'v2.1.1-beta.3',
+    body: `
+## 更新内容
+
+支持【漏钟夜浅】自动领取签到奖励
+修复【他的传闻】不设置优先级时意外退出的问题
+Full Changelog: https://github.com/syoius/MaaYuan/compare/v2.1.1-beta.2...v2.1.1-beta.3
+已有 Mirror酱 CDK？前往 Mirror酱 高速下载
+    `.trim(),
+  })
+
+  assert.deepEqual(navPopoverData.highlights, [
+    '支持【漏钟夜浅】自动领取签到奖励',
+    '修复【他的传闻】不设置优先级时意外退出的问题',
+  ])
+})
+
 test('CLI writes navPopover module from a release json file', async () => {
   const fixtureDir = await mkdtemp(join(tmpdir(), 'maayuan-release-note-cli-'))
   const releasePath = join(fixtureDir, 'release.json')

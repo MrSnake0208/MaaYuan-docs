@@ -35,7 +35,7 @@
 ### Windows
 
 - 正确解压到**独立文件夹**，勿拆分文件。
-- 避免路径含中文，推荐非系统盘,例如 `D:\MaaYuan`。
+- 避免路径含中文，推荐非系统盘，例如 `D:\MaaYuan`。
 - 不要直接解压到 `C:\` 或 `C:\Program Files\`，否则可能涉及管理员权限问题。
 
 ### macOS
@@ -48,7 +48,7 @@
 
 | **系统** | **Windows** | **macOS** |
 | --------------------- | -------------------- | -------------------- |
-| 依赖库主要安装步骤 | 打开`MaaYuan`文件夹右键点击`DependencySetup_依赖库安装_win.bat`选择以管理员身份运行 | 打开`MaaYuan`文件夹点击“新建位于文件夹位置的终端窗口”或点击`启动台-其他-终端`输入指令 `sh DependencySetup_依赖库安装_mac.sh` |
+| 依赖库主要安装步骤 | 打开`MaaYuan`文件夹右键点击`DependencySetup_依赖库安装_win.bat`选择“以管理员身份运行” | 打开`MaaYuan`文件夹点击“新建位于文件夹位置的终端窗口”或点击`启动台-其他-终端`输入指令 `sh DependencySetup_依赖库安装_mac.sh` |
 | 若依赖库安装失败 | 下载**VCRedist**：点击 [**vc_redist.x64**](https://aka.ms/vs/17/release/vc_redist.x64.exe) 下载并安装完成；下载**NET10**：点击[**.NET 官方下载页面**](https://dotnet.microsoft.com/zh-cn/download/dotnet/10.0)选择 .NET **桌面运行时**-Windows **x64**进行下载并安装完成。 | 无需下载**VCRedist**；下载**NET10**：点击[**.NET 官方下载页面**](https://dotnet.microsoft.com/zh-cn/download/dotnet/10.0)选择 .NET**运行时**-macOS **Arm64**进行下载并安装完成。 |
 
 ::: details 版本变化提醒

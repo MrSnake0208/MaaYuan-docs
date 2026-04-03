@@ -54,6 +54,7 @@ defineOptions({ name: "HomeCommunityLinks" });
             <span
               v-if="hasAuthor(link)"
               class="home-community-links__author-badge"
+              :style="{ '--author-badge-color': link.author?.color }"
             >
               {{ link.author?.name }}
             </span>
@@ -153,13 +154,14 @@ defineOptions({ name: "HomeCommunityLinks" });
 }
 
 .home-community-links__author-badge {
+  --author-badge-color: var(--vp-c-brand-1);
   display: inline-flex;
   align-items: center;
   min-height: 28px;
   padding: 4px 10px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--vp-c-brand-1) 16%, var(--vp-c-bg-soft));
-  color: var(--vp-c-brand-1);
+  background: color-mix(in srgb, var(--author-badge-color) 16%, var(--vp-c-bg-soft));
+  color: var(--author-badge-color);
   font-size: 0.84rem;
   font-weight: 700;
   line-height: 1;

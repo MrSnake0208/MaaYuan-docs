@@ -8,7 +8,8 @@
       "href": "https://share.maayuan.top/",
       "external": true,
       "author": {
-        "name": "MaaYuan"
+        "name": "MaaYuan",
+        "color": "#FFD700"
       }
     },
     {
@@ -17,7 +18,8 @@
       "href": "https://meow.maayuan.top/",
       "external": true,
       "author": {
-        "name": "MaaYuan"
+        "name": "MaaYuan",
+        "color": "#FFD700"
       }
     },
     {
@@ -26,7 +28,8 @@
       "href": "https://fungi2025.maayuan.top/",
       "external": true,
       "author": {
-        "name": "MaaYuan"
+        "name": "MaaYuan",
+        "color": "#FFD700"
       }
     },
     {
@@ -35,52 +38,58 @@
       "href": "https://zhaoge.maayuan.top/",
       "external": true,
       "author": {
-        "name": "MaaYuan"
+        "name": "MaaYuan",
+        "color": "#FFD700"
       }
     },
     {
       "icon": "💰",
       "text": "氪金表",
-      "href": "https://fungi2025.maayuan.top/",
+      "href": "",
       "external": true,
       "author": {
-        "name": "binary"
+        "name": "binary",
+        "color": "#8B5CF6"
       }
     },
     {
       "icon": "🎨",
       "text": "角色海报",
-      "href": "https://fungi2025.maayuan.top/",
+      "href": "",
       "external": true,
       "author": {
-        "name": "binary"
+        "name": "binary",
+        "color": "#8B5CF6"
       }
     },
     {
       "icon": "🤖",
       "text": "YuanAssist",
-      "href": "https://fungi2025.maayuan.top/",
+      "href": "",
       "external": true,
       "author": {
-        "name": "春笙"
+        "name": "春笙",
+        "color": "#10B981"
       }
     },
     {
       "icon": "🕊️",
       "text": "鸢报",
-      "href": "https://fungi2025.maayuan.top/",
+      "href": "",
       "external": true,
       "author": {
-        "name": "线线"
+        "name": "线线",
+        "color": "#F472B6"
       }
     },
     {
       "icon": "⭐",
       "text": "星石",
-      "href": "https://fungi2025.maayuan.top/",
+      "href": "",
       "external": true,
       "author": {
-        "name": "线线"
+        "name": "线线",
+        "color": "#F472B6"
       }
     }
   ]

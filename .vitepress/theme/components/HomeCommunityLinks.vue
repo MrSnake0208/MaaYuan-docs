@@ -1,30 +1,18 @@
 <script setup lang="ts">
-const communityLinks = [
-  {
-    icon: '📤',
-    text: '作业站',
-    href: 'https://share.maayuan.top/',
-    external: true,
-  },
-  {
-    icon: '🐱',
-    text: '咪教模拟器助手',
-    href: 'https://meow.maayuan.top/',
-    external: true,
-  },
-  {
-    icon: '🍄',
-    text: '躬耕南阳助手',
-    href: 'https://fungi2025.maayuan.top/',
-    external: true,
-  },
-  {
-    icon: '⚔️',
-    text: '朝歌之战助手',
-    href: 'https://zhaoge.maayuan.top/',
-    external: true,
-  },
-]
+import {
+  hasAuthor,
+  homeCommunityLinks,
+  homeCommunityLinksDescription,
+  homeCommunityLinksTitle,
+} from '../../shared/homeCommunityLinks.mjs'
+
+function getExternalTarget(external?: boolean) {
+  return external ? '_blank' : undefined
+}
+
+function getExternalRel(external?: boolean) {
+  return external ? 'noopener noreferrer' : undefined
+}
 
 defineOptions({ name: 'HomeCommunityLinks' })
 </script>
@@ -33,25 +21,42 @@ defineOptions({ name: 'HomeCommunityLinks' })
   <section class="home-community-links" aria-labelledby="home-community-links-title">
     <div class="home-community-links__header">
       <h2 id="home-community-links-title" class="home-community-links__title">
-        工具与社区链接
+        {{ homeCommunityLinksTitle }}
       </h2>
       <p class="home-community-links__description">
-        都是我们做的哦~
+        {{ homeCommunityLinksDescription }}
       </p>
     </div>
 
     <div class="home-community-links__grid">
-      <a
-        v-for="{ icon, text, href, external } in communityLinks"
-        :key="text"
+      <article
+        v-for="link in homeCommunityLinks"
+        :key="link.text"
         class="home-community-links__item"
-        :href="href"
-        :target="external ? '_blank' : undefined"
-        :rel="external ? 'noopener noreferrer' : undefined"
+        :class="{ 'has-author': hasAuthor(link) }"
       >
-        <span class="home-community-links__icon" aria-hidden="true">{{ icon }}</span>
-        <span>{{ text }}</span>
-      </a>
+        <a
+          class="home-community-links__primary"
+          :href="link.href"
+          :target="getExternalTarget(link.external)"
+          :rel="getExternalRel(link.external)"
+        >
+          <span class="home-community-links__icon" aria-hidden="true">{{ link.icon }}</span>
+
+          <span class="home-community-links__text-group">
+            <span class="home-community-links__text">{{ link.text }}</span>
+
+            <span
+              v-if="hasAuthor(link)"
+              class="home-community-links__author-badge"
+            >
+              作者 {{ link.author?.name }}
+            </span>
+          </span>
+
+          <span class="home-community-links__link-arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
     </div>
   </section>
 </template>
@@ -59,13 +64,13 @@ defineOptions({ name: 'HomeCommunityLinks' })
 <style scoped>
 .home-community-links {
   margin: 64px auto 24px;
-  max-width: 960px;
+  max-width: 1120px;
   padding: 0 24px;
-  text-align: center;
 }
 
 .home-community-links__header {
   margin-bottom: 28px;
+  text-align: center;
 }
 
 .home-community-links__title {
@@ -83,46 +88,84 @@ defineOptions({ name: 'HomeCommunityLinks' })
 }
 
 .home-community-links__grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
 
 .home-community-links__item {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  min-height: 52px;
-  padding: 12px 18px;
+}
+
+.home-community-links__primary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 14px 18px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   background: color-mix(in srgb, var(--vp-c-bg-soft) 72%, transparent);
   color: var(--vp-c-text-1);
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.2;
   box-shadow: 0 8px 24px rgb(15 23 42 / 8%);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.home-community-links__item:hover {
+.home-community-links__primary:hover {
   transform: translateY(-2px);
   border-color: var(--vp-c-brand-1);
   box-shadow: 0 14px 32px rgb(79 70 229 / 16%);
 }
 
 .home-community-links__icon {
+  flex: none;
   font-size: 1.35rem;
   line-height: 1;
 }
 
-.dark .home-community-links__item {
+.home-community-links__text-group {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.home-community-links__text {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--vp-c-text-1);
+}
+
+.home-community-links__author-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--vp-c-brand-1) 16%, var(--vp-c-bg-soft));
+  color: var(--vp-c-brand-1);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.home-community-links__link-arrow {
+  flex: none;
+  color: var(--vp-c-text-3);
+  font-size: 0.96rem;
+}
+
+.dark .home-community-links__primary {
   box-shadow: 0 10px 26px rgb(2 6 23 / 28%);
 }
 
-.dark .home-community-links__item:hover {
+.dark .home-community-links__primary:hover {
   box-shadow: 0 16px 34px rgb(99 102 241 / 22%);
 }
 
@@ -133,12 +176,13 @@ defineOptions({ name: 'HomeCommunityLinks' })
   }
 
   .home-community-links__grid {
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  .home-community-links__item {
-    width: 100%;
-    justify-content: center;
+  .home-community-links__primary {
+    min-height: 68px;
+    padding-inline: 14px;
   }
 }
 </style>

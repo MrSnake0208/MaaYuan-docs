@@ -4,21 +4,24 @@ import {
   homeCommunityLinks,
   homeCommunityLinksDescription,
   homeCommunityLinksTitle,
-} from '../../shared/homeCommunityLinks.mjs'
+} from "../../shared/homeCommunityLinks.mjs";
 
 function getExternalTarget(external?: boolean) {
-  return external ? '_blank' : undefined
+  return external ? "_blank" : undefined;
 }
 
 function getExternalRel(external?: boolean) {
-  return external ? 'noopener noreferrer' : undefined
+  return external ? "noopener noreferrer" : undefined;
 }
 
-defineOptions({ name: 'HomeCommunityLinks' })
+defineOptions({ name: "HomeCommunityLinks" });
 </script>
 
 <template>
-  <section class="home-community-links" aria-labelledby="home-community-links-title">
+  <section
+    class="home-community-links"
+    aria-labelledby="home-community-links-title"
+  >
     <div class="home-community-links__header">
       <h2 id="home-community-links-title" class="home-community-links__title">
         {{ homeCommunityLinksTitle }}
@@ -41,7 +44,9 @@ defineOptions({ name: 'HomeCommunityLinks' })
           :target="getExternalTarget(link.external)"
           :rel="getExternalRel(link.external)"
         >
-          <span class="home-community-links__icon" aria-hidden="true">{{ link.icon }}</span>
+          <span class="home-community-links__icon" aria-hidden="true">{{
+            link.icon
+          }}</span>
 
           <span class="home-community-links__text-group">
             <span class="home-community-links__text">{{ link.text }}</span>
@@ -50,11 +55,13 @@ defineOptions({ name: 'HomeCommunityLinks' })
               v-if="hasAuthor(link)"
               class="home-community-links__author-badge"
             >
-              作者 {{ link.author?.name }}
+              {{ link.author?.name }}
             </span>
           </span>
 
-          <span class="home-community-links__link-arrow" aria-hidden="true">↗</span>
+          <span class="home-community-links__link-arrow" aria-hidden="true"
+            >↗</span
+          >
         </a>
       </article>
     </div>
@@ -111,7 +118,10 @@ defineOptions({ name: 'HomeCommunityLinks' })
   color: var(--vp-c-text-1);
   text-decoration: none;
   box-shadow: 0 8px 24px rgb(15 23 42 / 8%);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .home-community-links__primary:hover {

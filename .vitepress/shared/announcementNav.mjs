@@ -1,59 +1,7 @@
-export const announcementNavEntries = [
-  {
-    text: '内测招募',
-    content: `
-大家好！
-
-这里是 MaaYuan 开发团队。目前软件已进入新功能密集迭代阶段，现面向《代号鸢》/《如鸢》玩家公开招募核心内测体验官！如果你满足以下条件，欢迎加入：
-
-- ✅ 每天有较充足时间，能高频使用 MaaYuan
-- ✅ 愿意深度体验新功能，并主动记录使用问题
-- ✅ 遇到 Bug 或异常时，愿意提供截图 / 录屏 + 清晰描述
-- ✅ 有长期参与反馈的意愿，与项目共同成长
-
-## ✨ 你将获得
-
-- 优先体验尚未公开的新功能（如智能作业适配、新版战斗逻辑等）
-- 直通开发者的专属反馈通道
-- 表现活跃者还将解锁神秘福利：周边盲盒等！
-
-## 📥 如何报名？
-
-如果你可以使用 MaaYuan 内置更新功能，请直接加入交流群：1080267646。
-
-并在入群审核中填入以下两个问题的回答：
-
-1. 你的电脑系统是 W / M / 其他
-2. 你的 Maa 鸢内置更新类型使用的是 G 还是 M
-
-你的每一次反馈，都是 MaaYuan 变得更好的关键！
-
-期待与你一起，打造最稳、最聪明的鸢系长草助手 💙
-    `.trim(),
-  },
-  {
-    text: '群宣',
-    content: `
-群宣，我们有2K人大群啦
-经过各种白嫖硬蹭的努力，我们终于取得了2K人大群的资格，不再受限人数到达500就不能修改公告，只能清除潜水人员的情况了（但还是会以年为单位清除长期潜水的群友，如每年6月清理截止本年1月1日前未发言过群友，习惯潜水的群友可以蹲频道，那边不会清理）
-
-1️⃣Maa鸢常驻交流群863288153
-本群为Maa鸢官方群，群里禁止起任何节奏，请和谐友善交流，群内属性复杂，请专注与MaaYuan相关交流，非MaaYuan相关引起纠纷争论，会将双方都移出群。
-
-2⃣Maa鸢作业交流群1055262891
-本群仅限作业制作者加入，需要提供至少2份上传作业站的作业内容供管理员审核。
-
-3️⃣Maa鸢活动限时交流群587118812
-本群仅在大型肉鸽活动因大量新玩家加入时开放玩家交流互助，或发布内测功能需要人员测试时开放反馈维护。其他时间会关闭入口并且全时段禁言。
-
-4️⃣Maa鸢程序交流群1060902378
-本群仅限程序老师加入，欢迎老师们提交更多pr共同建设MaaYuan ！！ 
-    `.trim(),
-  },
-]
+import announcementEntries from './data/announcements.json'
 
 export function createAnnouncementNavMenuItems(renderContent = content => content) {
-  return announcementNavEntries.map(({ text, content }) => ({
+  return announcementEntries.map(({ text, content }) => ({
     component: 'AnnouncementNavAction',
     props: {
       title: text,

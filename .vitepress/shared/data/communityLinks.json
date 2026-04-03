@@ -1,0 +1,87 @@
+{
+  "title": "工具与社区链接",
+  "description": "欢迎投稿共建社区~",
+  "links": [
+    {
+      "icon": "📤",
+      "text": "作业站",
+      "href": "https://share.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "MaaYuan"
+      }
+    },
+    {
+      "icon": "🐱",
+      "text": "咪教模拟器助手",
+      "href": "https://meow.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "MaaYuan"
+      }
+    },
+    {
+      "icon": "🍄",
+      "text": "躬耕南阳助手",
+      "href": "https://fungi2025.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "MaaYuan"
+      }
+    },
+    {
+      "icon": "⚔️",
+      "text": "朝歌之战助手",
+      "href": "https://zhaoge.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "MaaYuan"
+      }
+    },
+    {
+      "icon": "💰",
+      "text": "氪金表",
+      "href": "https://fungi2025.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "binary"
+      }
+    },
+    {
+      "icon": "🎨",
+      "text": "角色海报",
+      "href": "https://fungi2025.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "binary"
+      }
+    },
+    {
+      "icon": "🤖",
+      "text": "YuanAssist",
+      "href": "https://fungi2025.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "春笙"
+      }
+    },
+    {
+      "icon": "🕊️",
+      "text": "鸢报",
+      "href": "https://fungi2025.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "线线"
+      }
+    },
+    {
+      "icon": "⭐",
+      "text": "星石",
+      "href": "https://fungi2025.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "线线"
+      }
+    }
+  ]
+}

@@ -256,6 +256,12 @@ onUnmounted(() => {
   margin-top: 6px;
 }
 
+.nav-popover-badge__list-item {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
 .nav-popover-badge__content::before {
   content: '';
   position: absolute;

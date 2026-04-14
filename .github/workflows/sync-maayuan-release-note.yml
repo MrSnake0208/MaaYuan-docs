@@ -5,6 +5,8 @@ on:
     types:
       - maayuan_release_note_edited
   workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
 
 permissions:
   contents: write

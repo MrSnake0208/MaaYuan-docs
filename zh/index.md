@@ -21,5 +21,3 @@ features:
 ---
 
 <HomeCommunityLinks />
-
-<HomeContributors />

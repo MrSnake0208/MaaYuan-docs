@@ -40,3 +40,5 @@
 
 - [QQ作业群](https://qm.qq.com/q/jP3bf8QQ0M)
 - [QQ程序群](https://qm.qq.com/q/iOvdQqr7GM)
+
+<HomeContributors />

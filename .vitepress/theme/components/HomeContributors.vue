@@ -8,10 +8,12 @@ defineOptions({ name: 'HomeContributors' })
   <section class="home-contributors" aria-labelledby="home-contributors-title">
     <div class="home-contributors__header">
       <h2 id="home-contributors-title" class="home-contributors__title">
-        感谢以下所有人的贡献与参与
+        致谢
       </h2>
       <p class="home-contributors__description">
-        以下排名不分先后（参与或主动提 PR 申请加入）
+        感谢所有人的贡献与参与，是你们的帮助让MaaYuan越来越强大，以下排名不分先后
+        <br>
+🫱🏻‍🫲🏼欢迎主动提交PR加入我们
       </p>
     </div>
 

@@ -4,12 +4,14 @@ import {
   getAuthorBackground,
   homeCommunityLinksDescription,
   homeCommunityLinksTitle,
-  getLinksByCategory,
-  getCategories,
+  getFeaturedLinks,
+  getMoreLinks,
 } from "../../shared/homeCommunityLinks.mjs";
+import { ref } from "vue";
 
-const categories = getCategories()
-const linksByCategory = getLinksByCategory()
+const featuredLinks = getFeaturedLinks()
+const moreLinks = getMoreLinks()
+const showMore = ref(false)
 
 function getExternalTarget(external?: boolean) {
   return external ? "_blank" : undefined;
@@ -17,6 +19,10 @@ function getExternalTarget(external?: boolean) {
 
 function getExternalRel(external?: boolean) {
   return external ? "noopener noreferrer" : undefined;
+}
+
+function toggleMore() {
+  showMore.value = !showMore.value
 }
 
 defineOptions({ name: "HomeCommunityLinks" });
@@ -36,49 +42,102 @@ defineOptions({ name: "HomeCommunityLinks" });
       </p>
     </div>
 
-    <div
-      v-for="category in categories"
-      :key="category"
-      class="home-community-links__category"
-    >
-      <h3 class="home-community-links__category-title">{{ category }}</h3>
-      <div class="home-community-links__grid">
-        <article
-          v-for="link in linksByCategory[category]"
-          :key="link.text"
-          class="home-community-links__item"
-          :class="{ 'has-author': hasAuthor(link) }"
+    <div class="home-community-links__grid">
+      <article
+        v-for="link in featuredLinks"
+        :key="link.text"
+        class="home-community-links__item"
+        :class="{ 'has-author': hasAuthor(link) }"
+      >
+        <a
+          class="home-community-links__primary"
+          :href="link.href"
+          :target="getExternalTarget(link.external)"
+          :rel="getExternalRel(link.external)"
         >
-          <a
-            class="home-community-links__primary"
-            :href="link.href"
-            :target="getExternalTarget(link.external)"
-            :rel="getExternalRel(link.external)"
-          >
-            <span class="home-community-links__icon" aria-hidden="true">{{
-              link.icon
-            }}</span>
+          <span class="home-community-links__icon" aria-hidden="true">{{
+            link.icon
+          }}</span>
 
-            <span class="home-community-links__text-group">
-              <span class="home-community-links__text">{{ link.text }}</span>
+          <span class="home-community-links__text-group">
+            <span class="home-community-links__text">{{ link.text }}</span>
 
-              <span
-                v-if="hasAuthor(link)"
-                class="home-community-links__author-badge"
-                :style="{
-                  '--author-badge-color': link.author?.color,
-                  '--author-badge-bg': getAuthorBackground(link)
-                }"
-              >
-                {{ link.author?.name }}
-              </span>
-            </span>
-
-            <span class="home-community-links__link-arrow" aria-hidden="true"
-              >↗</span
+            <span
+              v-if="hasAuthor(link)"
+              class="home-community-links__author-badge"
+              :style="{
+                '--author-badge-color': link.author?.color,
+                '--author-badge-bg': getAuthorBackground(link)
+              }"
             >
-          </a>
-        </article>
+              {{ link.author?.name }}
+            </span>
+          </span>
+
+          <span class="home-community-links__link-arrow" aria-hidden="true"
+            >↗</span
+          >
+        </a>
+      </article>
+    </div>
+
+    <div v-if="moreLinks.length > 0" class="home-community-links__more-section">
+      <button
+        v-if="!showMore"
+        class="home-community-links__more-button"
+        @click="toggleMore"
+      >
+        <span>更多</span>
+        <span class="home-community-links__more-arrow">▼</span>
+      </button>
+
+      <div v-if="showMore" class="home-community-links__more-content">
+        <div class="home-community-links__grid">
+          <article
+            v-for="link in moreLinks"
+            :key="link.text"
+            class="home-community-links__item"
+            :class="{ 'has-author': hasAuthor(link) }"
+          >
+            <a
+              class="home-community-links__primary"
+              :href="link.href"
+              :target="getExternalTarget(link.external)"
+              :rel="getExternalRel(link.external)"
+            >
+              <span class="home-community-links__icon" aria-hidden="true">{{
+                link.icon
+              }}</span>
+
+              <span class="home-community-links__text-group">
+                <span class="home-community-links__text">{{ link.text }}</span>
+
+                <span
+                  v-if="hasAuthor(link)"
+                  class="home-community-links__author-badge"
+                  :style="{
+                    '--author-badge-color': link.author?.color,
+                    '--author-badge-bg': getAuthorBackground(link)
+                  }"
+                >
+                  {{ link.author?.name }}
+                </span>
+              </span>
+
+              <span class="home-community-links__link-arrow" aria-hidden="true"
+                >↗</span
+              >
+            </a>
+          </article>
+        </div>
+
+        <button
+          class="home-community-links__more-button home-community-links__more-button--collapse"
+          @click="toggleMore"
+        >
+          <span>收起</span>
+          <span class="home-community-links__more-arrow">▲</span>
+        </button>
       </div>
     </div>
   </section>
@@ -107,21 +166,6 @@ defineOptions({ name: "HomeCommunityLinks" });
 .home-community-links__description {
   margin: 12px 0 0;
   font-size: 0.95rem;
-  color: var(--vp-c-text-2);
-}
-
-.home-community-links__category {
-  margin-bottom: 32px;
-}
-
-.home-community-links__category:last-child {
-  margin-bottom: 0;
-}
-
-.home-community-links__category-title {
-  margin: 0 0 14px;
-  font-size: 1.05rem;
-  font-weight: 600;
   color: var(--vp-c-text-2);
 }
 
@@ -204,6 +248,48 @@ defineOptions({ name: "HomeCommunityLinks" });
   font-size: 0.96rem;
 }
 
+.home-community-links__more-section {
+  margin-top: 24px;
+}
+
+.home-community-links__more-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 24px;
+  border: 1px dashed var(--vp-c-divider);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--vp-c-text-2);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.home-community-links__more-button:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+  background: color-mix(in srgb, var(--vp-c-brand-1) 8%, transparent);
+}
+
+.home-community-links__more-arrow {
+  font-size: 0.75rem;
+}
+
+.home-community-links__more-content {
+  margin-top: 16px;
+}
+
+.home-community-links__more-button--collapse {
+  margin-top: 16px;
+}
+
 .dark .home-community-links__primary {
   box-shadow: 0 10px 26px rgb(2 6 23 / 28%);
 }
@@ -216,10 +302,6 @@ defineOptions({ name: "HomeCommunityLinks" });
   .home-community-links {
     margin-top: 56px;
     padding-inline: 16px;
-  }
-
-  .home-community-links__category {
-    margin-bottom: 24px;
   }
 
   .home-community-links__grid {

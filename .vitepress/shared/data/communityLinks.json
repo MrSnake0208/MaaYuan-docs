@@ -7,100 +7,100 @@
       "text": "作业站",
       "href": "https://share.maayuan.top/",
       "external": true,
-      "category": "战斗工具",
       "author": {
         "name": "MaaYuan",
         "color": "#FFD700"
-      }
-    },
-    {
-      "icon": "🐱",
-      "text": "咪教模拟器助手",
-      "href": "https://meow.maayuan.top/",
-      "external": true,
-      "category": "活动相关",
-      "author": {
-        "name": "MaaYuan",
-        "color": "#FFD700"
-      }
-    },
-    {
-      "icon": "🍄",
-      "text": "躬耕南阳助手",
-      "href": "https://fungi2025.maayuan.top/",
-      "external": true,
-      "category": "活动相关",
-      "author": {
-        "name": "MaaYuan",
-        "color": "#FFD700"
-      }
-    },
-    {
-      "icon": "⚔️",
-      "text": "朝歌之战助手",
-      "href": "https://zhaoge.maayuan.top/",
-      "external": true,
-      "category": "活动相关",
-      "author": {
-        "name": "MaaYuan",
-        "color": "#FFD700"
-      }
+      },
+      "more": false
     },
     {
       "icon": "💰",
       "text": "鸢氪金积分助手",
       "href": "https://paid.maayuan.top/",
       "external": true,
-      "category": "养成助手",
       "author": {
         "name": "binary",
         "color": "#10B981"
-      }
+      },
+      "more": false
     },
     {
       "icon": "🎨",
       "text": "鸢角色海报助手",
       "href": "https://poster.maayuan.top/",
       "external": true,
-      "category": "养成助手",
       "author": {
         "name": "binary",
         "color": "#10B981"
-      }
+      },
+      "more": true
     },
     {
       "icon": "🤖",
       "text": "YuanAssist",
       "href": "https://www.yuanassist.space/",
       "external": true,
-      "category": "战斗工具",
       "author": {
         "name": "春笙月",
         "color": "#22C55E"
-      }
+      },
+      "more": true
     },
     {
       "icon": "🕊️",
       "text": "鸢报羁伴助手",
       "href": "https://bond.maayuan.top/",
       "external": true,
-      "category": "养成助手",
       "author": {
         "name": "线絤",
         "color": "#F472B6"
-      }
+      },
+      "more": true
     },
     {
       "icon": "🖩",
       "text": "爵位计算器",
       "href": "https://wiki.biligame.com/yuan/?curid=8905",
       "external": true,
-      "category": "养成助手",
       "author": {
         "name": "鸢BWiki",
         "color": "#FFF8CB",
         "background": "#5D3E32"
-      }
+      },
+      "more": true
+    },
+    {
+      "icon": "🐱",
+      "text": "咪教模拟器助手",
+      "href": "https://meow.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "MaaYuan",
+        "color": "#FFD700"
+      },
+      "more": true
+    },
+    {
+      "icon": "🍄",
+      "text": "躬耕南阳助手",
+      "href": "https://fungi2025.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "MaaYuan",
+        "color": "#FFD700"
+      },
+      "more": true
+    },
+    {
+      "icon": "⚔️",
+      "text": "朝歌之战助手",
+      "href": "https://zhaoge.maayuan.top/",
+      "external": true,
+      "author": {
+        "name": "MaaYuan",
+        "color": "#FFD700"
+      },
+      "more": true
     }
   ]
 }

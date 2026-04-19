@@ -7,11 +7,18 @@ import {
   getFeaturedLinks,
   getMoreLinks,
 } from "../../shared/homeCommunityLinks.mjs";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const featuredLinks = getFeaturedLinks()
 const moreLinks = getMoreLinks()
 const showMore = ref(false)
+
+const allLinks = computed(() => {
+  return [...featuredLinks, ...moreLinks]
+})
+
+const lastFeaturedIndex = computed(() => featuredLinks.value.length - 1)
+const lastMoreIndex = computed(() => allLinks.value.length - 1)
 
 function getExternalTarget(external?: boolean) {
   return external ? "_blank" : undefined;
@@ -44,8 +51,9 @@ defineOptions({ name: "HomeCommunityLinks" });
 
     <div class="home-community-links__grid">
       <article
-        v-for="link in featuredLinks"
+        v-for="(link, index) in allLinks"
         :key="link.text"
+        v-show="!link.more || showMore"
         class="home-community-links__item"
         :class="{ 'has-author': hasAuthor(link) }"
       >
@@ -79,59 +87,25 @@ defineOptions({ name: "HomeCommunityLinks" });
           >
         </a>
       </article>
-    </div>
 
-    <div v-if="moreLinks.length > 0" class="home-community-links__more-section">
-      <button
-        v-if="!showMore"
-        class="home-community-links__more-button"
-        @click="toggleMore"
+      <div
+        v-if="moreLinks.length > 0"
+        class="home-community-links__toggle-wrapper"
+        :style="{
+          '--featured-count': featuredLinks.length,
+          '--total-count': allLinks.length
+        }"
       >
-        <span>更多</span>
-        <span class="home-community-links__more-arrow">▼</span>
-      </button>
-
-      <div v-if="showMore" class="home-community-links__more-content">
-        <div class="home-community-links__grid">
-          <article
-            v-for="link in moreLinks"
-            :key="link.text"
-            class="home-community-links__item"
-            :class="{ 'has-author': hasAuthor(link) }"
-          >
-            <a
-              class="home-community-links__primary"
-              :href="link.href"
-              :target="getExternalTarget(link.external)"
-              :rel="getExternalRel(link.external)"
-            >
-              <span class="home-community-links__icon" aria-hidden="true">{{
-                link.icon
-              }}</span>
-
-              <span class="home-community-links__text-group">
-                <span class="home-community-links__text">{{ link.text }}</span>
-
-                <span
-                  v-if="hasAuthor(link)"
-                  class="home-community-links__author-badge"
-                  :style="{
-                    '--author-badge-color': link.author?.color,
-                    '--author-badge-bg': getAuthorBackground(link)
-                  }"
-                >
-                  {{ link.author?.name }}
-                </span>
-              </span>
-
-              <span class="home-community-links__link-arrow" aria-hidden="true"
-                >↗</span
-              >
-            </a>
-          </article>
-        </div>
-
         <button
+          v-if="!showMore"
+          class="home-community-links__more-button"
+          @click="toggleMore"
+        >
+          <span>更多</span>
+          <span class="home-community-links__more-arrow">▼</span>
+        </button>
+        <button
+          v-else
           class="home-community-links__more-button home-community-links__more-button--collapse"
           @click="toggleMore"
         >
@@ -248,8 +222,10 @@ defineOptions({ name: "HomeCommunityLinks" });
   font-size: 0.96rem;
 }
 
-.home-community-links__more-section {
-  margin-top: 24px;
+.home-community-links__toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home-community-links__more-button {
@@ -258,7 +234,9 @@ defineOptions({ name: "HomeCommunityLinks" });
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 12px 24px;
+  height: 100%;
+  min-height: 72px;
+  padding: 14px 18px;
   border: 1px dashed var(--vp-c-divider);
   border-radius: 14px;
   background: transparent;
@@ -282,12 +260,11 @@ defineOptions({ name: "HomeCommunityLinks" });
   font-size: 0.75rem;
 }
 
-.home-community-links__more-content {
-  margin-top: 16px;
-}
-
 .home-community-links__more-button--collapse {
-  margin-top: 16px;
+  width: 100%;
+  height: 100%;
+  min-height: 72px;
+  align-self: flex-end;
 }
 
 .dark .home-community-links__primary {
@@ -313,11 +290,20 @@ defineOptions({ name: "HomeCommunityLinks" });
     min-height: 68px;
     padding-inline: 14px;
   }
+
+  .home-community-links__more-button {
+    min-height: 68px;
+    padding-inline: 14px;
+  }
 }
 
 @media (max-width: 400px) {
   .home-community-links__grid {
     grid-template-columns: 1fr;
+  }
+
+  .home-community-links__more-button--collapse {
+    width: 100%;
   }
 }
 </style>

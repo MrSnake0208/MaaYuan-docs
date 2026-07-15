@@ -1,8 +1,18 @@
 # 问题排查<Badge type="danger" text="必读" />
 
-::: tip 打不开
-若`MaaYuan`在电脑某次更新/蓝屏/死机后无法运行，或者单纯是从报错窗口来到这的，那八成是由于运行库未更新导致的问题。请先阅读[下载与安装](https://maayuan.top/Started/Install.html)。
-:::
+## 打不开
+- 若`MaaYuan`在电脑某次更新/蓝屏/死机后无法运行，或者单纯是从报错窗口来到这的，那八成是由于运行库未更新导致的问题。请先阅读[下载与安装](https://maayuan.top/Started/Install.html)。
+- 如果`MaaYuan`无法正常启动、ADB 被占用，或提示应用受系统限制，mac系统可尝试解除隔离，强制关闭所有`MaaYuan`和ADB进程：
+1. 按Cmd+Option+Esc强制退出`MaaYuan`，
+2. 打开终端（Terminal）依次执行：
+```
+pkill -f hd-adb
+pkill -f adb
+```
+3. 如果仍无法启动，可能是macOS的Gatekeeper隔离属性导致。执行以下命令解隔离，将`<MAA应用路径>`替换为`MaaYuan`的实际路径：
+```
+xattr -dr com.apple.quarantine <MAA应用路径>
+```
 
 ## 懒得查
 

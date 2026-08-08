@@ -37,7 +37,7 @@ const rootClass = computed(() => (
 ))
 
 const hasDescription = computed(() => props.description.trim().length > 0)
-const hasSections = computed(() => props.sections.some(section => section.items.length > 0))
+const hasSections = computed(() => props.sections.length > 0)
 const hasHighlights = computed(() => props.highlights.length > 0)
 
 function isDesktopViewport() {
@@ -183,7 +183,10 @@ onUnmounted(() => {
             >
               {{ section.title }}
             </p>
-            <ul class="nav-popover-badge__list">
+            <ul
+              v-if="section.items.length > 0"
+              class="nav-popover-badge__list"
+            >
               <li
                 v-for="item in section.items"
                 :key="item"

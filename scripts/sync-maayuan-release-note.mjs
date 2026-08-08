@@ -73,7 +73,7 @@ function extractSections(body) {
       break
 
     if (section.items.length === 0 && section.title) {
-      normalizedSections.push({ items: [section.title] })
+      normalizedSections.push({ title: section.title, items: [] })
       remainingItemCount -= 1
       continue
     }

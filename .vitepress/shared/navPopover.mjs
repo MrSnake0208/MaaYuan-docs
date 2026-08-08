@@ -18,9 +18,8 @@ export const navPopoverData = {
       ]
     },
     {
-      "items": [
-        "🏯 据点情报支持快速扫荡"
-      ]
+      "title": "🏯 据点情报支持快速扫荡",
+      "items": []
     }
   ],
   "ariaLabel": "查看当前项目版本与更新说明"

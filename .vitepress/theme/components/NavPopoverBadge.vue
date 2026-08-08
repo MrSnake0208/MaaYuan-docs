@@ -2,10 +2,16 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vitepress'
 
+interface ReleaseNoteSection {
+  title?: string
+  items: string[]
+}
+
 const props = withDefaults(defineProps<{
   badgeText: string
   title: string
   description?: string
+  sections?: ReleaseNoteSection[]
   highlights?: string[]
   ariaLabel?: string
   screenMenu?: boolean
@@ -13,6 +19,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   ariaLabel: '查看项目说明',
   description: '',
+  sections: () => [],
   highlights: () => [],
   screenMenu: false,
   link: '',
@@ -30,6 +37,7 @@ const rootClass = computed(() => (
 ))
 
 const hasDescription = computed(() => props.description.trim().length > 0)
+const hasSections = computed(() => props.sections.some(section => section.items.length > 0))
 const hasHighlights = computed(() => props.highlights.length > 0)
 
 function isDesktopViewport() {
@@ -160,8 +168,34 @@ onUnmounted(() => {
         >
           {{ props.description }}
         </p>
+        <div
+          v-if="hasSections"
+          class="nav-popover-badge__sections"
+        >
+          <section
+            v-for="(section, index) in props.sections"
+            :key="`${section.title ?? 'section'}-${index}`"
+            class="nav-popover-badge__section"
+          >
+            <p
+              v-if="section.title"
+              class="nav-popover-badge__subtitle"
+            >
+              {{ section.title }}
+            </p>
+            <ul class="nav-popover-badge__list">
+              <li
+                v-for="item in section.items"
+                :key="item"
+                class="nav-popover-badge__list-item"
+              >
+                {{ item }}
+              </li>
+            </ul>
+          </section>
+        </div>
         <ul
-          v-if="hasHighlights"
+          v-else-if="hasHighlights"
           class="nav-popover-badge__list"
         >
           <li
@@ -245,6 +279,8 @@ onUnmounted(() => {
 
 .nav-popover-badge__title,
 .nav-popover-badge__description,
+.nav-popover-badge__sections,
+.nav-popover-badge__subtitle,
 .nav-popover-badge__list {
   margin: 0;
 }
@@ -257,9 +293,30 @@ onUnmounted(() => {
   margin-top: 8px;
 }
 
+.nav-popover-badge__sections {
+  margin-top: 12px;
+}
+
+.nav-popover-badge__section + .nav-popover-badge__section {
+  margin-top: 10px;
+}
+
+.nav-popover-badge__subtitle {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+
 .nav-popover-badge__list {
   margin-top: 12px;
   padding-left: 1.1rem;
+}
+
+.nav-popover-badge__sections .nav-popover-badge__list {
+  margin-top: 0;
+}
+
+.nav-popover-badge__subtitle + .nav-popover-badge__list {
+  margin-top: 4px;
 }
 
 .nav-popover-badge__list-item + .nav-popover-badge__list-item {

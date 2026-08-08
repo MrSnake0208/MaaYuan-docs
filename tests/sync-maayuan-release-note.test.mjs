@@ -33,13 +33,17 @@ test('createNavPopoverData maps latest release fields into nav popover content',
 
   assert.deepEqual(navPopoverData, {
     badgeText: '✨ v2.1.3',
-    title: '更新渠道 ✨最新版本✨',
+    title: '更新渠道 ✨正式版✨',
     description: 'MaaYuan 2.1.3',
-    highlights: [
-      '修复连接不稳定问题',
-      '支持新的活动关卡',
-      '优化启动性能',
-      '感谢反馈',
+    sections: [
+      {
+        items: [
+          '修复连接不稳定问题',
+          '支持新的活动关卡',
+          '优化启动性能',
+          '感谢反馈',
+        ],
+      },
     ],
     ariaLabel: '查看当前项目版本与更新说明',
   })
@@ -84,6 +88,7 @@ test('writeNavPopoverFile falls back when release body is empty', async () => {
 
   assert.match(generatedContent, /badgeText": "✨ v2\.1\.4"/)
   assert.match(generatedContent, /description": "v2\.1\.4"/)
+  assert.match(generatedContent, /title": "更新渠道 ✨正式版✨"/)
   assert.match(generatedContent, /"暂无发布说明，请查看 GitHub Release 页面"/)
 })
 
@@ -114,10 +119,51 @@ test('createNavPopoverData prefers detailed lines after section headings', () =>
     `.trim(),
   })
 
-  assert.deepEqual(navPopoverData.highlights, [
-    '这个月先发布稳定版，方便月底赶作业。',
-    '自动导航。支持只领取时辰不扫荡。',
-    '适配心纸营建派遣 & 首通。',
+  assert.equal(navPopoverData.title, '更新渠道 ✨正式版✨')
+  assert.deepEqual(navPopoverData.sections, [
+    {
+      items: ['这个月先发布稳定版，方便月底赶作业。'],
+    },
+    {
+      title: '🏮 青丘戏坊',
+      items: ['自动导航。支持只领取时辰不扫荡。'],
+    },
+    {
+      title: '🔨 爱拼才会赢',
+      items: ['适配心纸营建派遣 & 首通。'],
+    },
+  ])
+})
+
+test('createNavPopoverData normalizes beta tags to the public beta channel', () => {
+  const navPopoverData = createNavPopoverData({
+    tag_name: 'v2.2.1-beta.1',
+    name: 'v2.2.1-beta.1',
+    prerelease: false,
+    body: `
+🥳 **MaaYuan v2.2.1-beta.1 （公测版v1）**
+
+## 📕 **v2.2.1-beta.1 公测版 v1 更新内容**
+
+### 👩🏻‍💻 **请递交简历**
+
+支持自动筛选简历。
+
+### 🏯 **据点情报支持快速扫荡**
+
+[已有 Mirror酱 CDK？前往 Mirror酱 高速下载](https://mirrorchyan.com/example)
+    `.trim(),
+  })
+
+  assert.equal(navPopoverData.title, '更新渠道 ✨公测版✨')
+  assert.deepEqual(navPopoverData.sections, [
+    {
+      title: '👩🏻‍💻 请递交简历',
+      items: ['支持自动筛选简历。'],
+    },
+    {
+      items: ['🏯 据点情报支持快速扫荡'],
+    },
   ])
 })
 
@@ -135,9 +181,13 @@ Full Changelog: https://github.com/syoius/MaaYuan/compare/v2.1.1-beta.2...v2.1.1
     `.trim(),
   })
 
-  assert.deepEqual(navPopoverData.highlights, [
-    '支持【漏钟夜浅】自动领取签到奖励',
-    '修复【他的传闻】不设置优先级时意外退出的问题',
+  assert.deepEqual(navPopoverData.sections, [
+    {
+      items: [
+        '支持【漏钟夜浅】自动领取签到奖励',
+        '修复【他的传闻】不设置优先级时意外退出的问题',
+      ],
+    },
   ])
 })
 

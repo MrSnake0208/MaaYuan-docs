@@ -3,7 +3,8 @@ import { dirname, resolve } from 'node:path'
 import process from 'node:process'
 
 const DEFAULT_ARIA_LABEL = '查看当前项目版本与更新说明'
-const DEFAULT_TITLE = '更新渠道 ✨最新版本✨'
+const RELEASE_CHANNELS = ['公测版', '正式版']
+const PRERELEASE_TAG_PATTERN = /(?:^|[.-])(alpha|beta|rc|preview|nightly)(?:[.-]|$)/i
 
 function normalizeLine(line) {
   return line
@@ -15,34 +16,97 @@ function normalizeLine(line) {
     .trim()
 }
 
-function extractHighlights(body) {
+function isIgnoredLine(line) {
+  return /^[-—]{3,}$/.test(line)
+    || /^full changelog:/i.test(line)
+    || /mirror酱/i.test(line)
+}
+
+function extractSections(body) {
   const lines = body.split('\n').map(line => line.replace(/\r/g, ''))
   const hasSectionHeading = lines.some(line => /^\s*##\s+/.test(line))
-  const highlights = []
+  const sections = []
   let started = !hasSectionHeading
+  let currentTitle = ''
+  let currentSection
 
   for (const rawLine of lines) {
     if (/^\s*##\s+/.test(rawLine)) {
       started = true
+      currentTitle = ''
+      currentSection = undefined
       continue
     }
 
-    if (!started || /^\s*###\s+/.test(rawLine))
+    if (!started)
       continue
+
+    if (/^\s*###\s+/.test(rawLine)) {
+      currentTitle = normalizeLine(rawLine)
+      currentSection = { title: currentTitle, items: [] }
+      sections.push(currentSection)
+      continue
+    }
 
     const line = normalizeLine(rawLine)
-    if (!line || /^[-—]{3,}$/.test(line))
+    if (!line || isIgnoredLine(line))
       continue
 
-    if (/^full changelog:/i.test(line) || /mirror酱/i.test(line))
-      continue
+    if (!currentSection) {
+      const previousSection = sections.at(-1)
+      currentSection = !currentTitle && previousSection && !previousSection.title
+        ? previousSection
+        : { ...(currentTitle ? { title: currentTitle } : {}), items: [] }
 
-    highlights.push(line)
-    if (highlights.length === 5)
-      break
+      if (currentSection !== previousSection)
+        sections.push(currentSection)
+    }
+
+    currentSection.items.push(line)
   }
 
-  return highlights
+  const normalizedSections = []
+  let remainingItemCount = 5
+
+  for (const section of sections) {
+    if (remainingItemCount === 0)
+      break
+
+    if (section.items.length === 0 && section.title) {
+      normalizedSections.push({ items: [section.title] })
+      remainingItemCount -= 1
+      continue
+    }
+
+    const items = section.items.slice(0, remainingItemCount)
+    if (items.length === 0)
+      continue
+
+    normalizedSections.push({
+      ...(section.title ? { title: section.title } : {}),
+      items,
+    })
+    remainingItemCount -= items.length
+  }
+
+  return normalizedSections
+}
+
+function extractReleaseChannel(release) {
+  const tagName = release.tag_name ?? ''
+  const versionLines = (release.body ?? '')
+    .split(/\r?\n/)
+    .filter(line => !tagName || line.toLowerCase().includes(tagName.toLowerCase()))
+    .slice(0, 5)
+  const metadata = [release.name ?? '', ...versionLines].join('\n')
+  const explicitChannel = RELEASE_CHANNELS.find(channel => metadata.includes(channel))
+
+  if (explicitChannel)
+    return explicitChannel
+
+  return release.prerelease || PRERELEASE_TAG_PATTERN.test(tagName)
+    ? '公测版'
+    : '正式版'
 }
 
 export function selectLatestRelease(releases) {
@@ -52,15 +116,16 @@ export function selectLatestRelease(releases) {
 }
 
 export function createNavPopoverData(release) {
-  const highlights = extractHighlights(release.body ?? '')
+  const sections = extractSections(release.body ?? '')
+  const releaseChannel = extractReleaseChannel(release)
 
   return {
     badgeText: `✨ ${release.tag_name}`,
-    title: DEFAULT_TITLE,
+    title: `更新渠道 ✨${releaseChannel}✨`,
     description: release.name || release.tag_name,
-    highlights: highlights.length > 0
-      ? highlights
-      : ['暂无发布说明，请查看 GitHub Release 页面'],
+    sections: sections.length > 0
+      ? sections
+      : [{ items: ['暂无发布说明，请查看 GitHub Release 页面'] }],
     ariaLabel: DEFAULT_ARIA_LABEL,
   }
 }

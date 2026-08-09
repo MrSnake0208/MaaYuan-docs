@@ -25,6 +25,50 @@
 - **模拟器支持**：可参考 MAA 文档站，查阅[模拟器和设备支持](https://docs.maa.plus/zh-cn/manual/device/)，确认正在使用的模拟器支持情况。
 - **分辨率**：模拟器分辨率应为手机版 720×1280 DPI 320。
 
+## 代号鸢/如鸢客户端下载
+- 推荐使用官网下载，代号鸢可使用**biubiu加速器**下载。下载后需要将apk文件导入模拟器安装。
+<table>
+    <tbody>
+        <tr>
+            <td align="center">游戏名</td>
+            <td align="center" colspan="3">代号鸢</td>
+            <td align="center">如鸢</td>
+        </tr>
+        <tr>
+            <td align="center">区服</td>
+            <td align="center">台服</td>
+            <td align="center" colspan="2">港澳服</td>
+            <td align="center">国服</td>
+        </tr>
+        <tr>
+            <td align="center">游戏语言</td>
+            <td align="center" colspan="2">繁中</td>
+            <td align="center" colspan="2">简中</td>
+        </tr>
+        <tr>
+            <td align="center">官服</td>
+            <td align="center">
+                <a href="https://ashesofthekingdom.sialiagames.com.tw/prism-ledum2pm/?access=1002_2002_3003#/">官网</a>/谷歌
+            </td>
+            <td align="center">谷歌</td>
+            <td align="center">
+                <a href="https://ashesofthekingdom.qookkagames.com/prism-leduk39b/?access=1004_2001_3003#/">官网</a>
+            </td>
+            <td align="center">
+                <a href="https://yuan.lingxigames.com/">官网</a>/Tap
+            </td>
+        </tr>
+        <tr>
+            <td align="center">渠道服</td>
+            <td align="center" colspan="3">/</td>
+            <td align="center">九游/小米/华为/OPPO</td>
+        </tr>
+    </tbody>
+</table>
+
+- 关于下载渠道**Tap版本**，在数据中客户端的名称与官网下载是不同的，如果不需要执行任务列表中的**启动游戏**，可无视此差异。
+- 关于下载渠道**谷歌版本**，在数据中客户端的名称与官网下载是不同的，如果不需要执行任务列表中的**启动biubiu**，可无视此差异。
+
 ## 开启一键解放双手
 
 - 勾选想要执行的任务，点击“开始任务”运行你的 `MaaYuan` 吧。

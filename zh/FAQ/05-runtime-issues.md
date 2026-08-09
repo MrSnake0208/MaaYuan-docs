@@ -39,32 +39,40 @@
 <table>
     <tbody>
         <tr>
-            <td align="center">游戏语言</td>
-            <td align="center" colspan="2">繁中</td>
-            <td align="center" colspan="2">简中</td>
-        </tr>
-        <tr>
             <td align="center">游戏名</td>
             <td align="center" colspan="3">代号鸢</td>
             <td align="center">如鸢</td>
         </tr>
         <tr>
-            <td align="center">官服</td>
+            <td align="center">区服</td>
             <td align="center">台服</td>
-            <td align="center" colspan="2">港服</td>
-            <td align="center">国服/官网</td>
+            <td align="center" colspan="2">港澳服</td>
+            <td align="center">国服</td>
         </tr>
         <tr>
-            <td align="center">其他版本</td>
+            <td align="center">游戏语言</td>
+            <td align="center" colspan="2">繁中</td>
+            <td align="center" colspan="2">简中</td>
+        </tr>
+        <tr>
+            <td align="center">官服</td>
+            <td align="center">官网/谷歌</td>
+            <td align="center">谷歌</td>
+            <td align="center">官网</td>
+            <td align="center">官网/Tap</td>
+        </tr>
+        <tr>
+            <td align="center">渠道服</td>
             <td align="center" colspan="3">/</td>
-            <td align="center">Tap/九游/小米/华为/OPPO</td>
+            <td align="center">九游/小米/华为/OPPO</td>
         </tr>
     </tbody>
 </table>
 
 
-
+- 官服及渠道服差别是下载渠道
 - 关于Tap版本，在数据中客户端的名称与官网下载是不同的，如果不需要执行任务列表中的**启动游戏**，可无视此差异。
+- 关于下载渠道谷歌版本，在数据中客户端的名称与官网下载是不同的，如果不需要执行任务列表中的**启动biubiu**，可无视此差异。
 
 ## 任务相关
 

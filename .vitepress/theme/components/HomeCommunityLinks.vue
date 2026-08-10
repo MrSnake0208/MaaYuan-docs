@@ -104,7 +104,7 @@ defineOptions({ name: "HomeCommunityLinks" });
           @click="toggleMore"
         >
           <span class="home-community-links__more-line">
-            <span>点击获取更多工具</span>
+            <span>点击查看更多工具</span>
             <span class="home-community-links__more-arrow">▼</span>
           </span>
           <span class="home-community-links__more-line">

@@ -17,8 +17,8 @@ const footerMessage = [
 ].filter(Boolean).join("<br>");
 
 export default defineConfig({
-  title: "MaaYuan Docs",
-  description: "MaaYuan 文档站",
+  title: "MaaYuan 文档站",
+  description: "MaaYuan 是代号鸢/如鸢玩家的实用助手，日常、活动、高难关卡直接拿捏，解放双手，畅玩无忧！立即了解如何使用或参与开发 MaaYuan，并查看更多代号鸢/如鸢攻略与实用工具。",
   head,
   vite: {
     plugins: [heroRandomImagesPlugin()],

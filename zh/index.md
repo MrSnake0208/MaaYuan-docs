@@ -1,16 +1,16 @@
 ---
 layout: home
 
-title: MaaYuan Docs
-titleTemplate: 使用手册，一款解放双手必备好物，还不赶快收藏
+title: MaaYuan 文档站
+titleTemplate: MaaYuan 开发与使用手册
 
 hero:
   name: MaaYuan
   text: 代号鸢 / 如鸢小助手
-  tagline: 基于 MaaFramework 的图像识别 + 模拟控制工具，专为殿下打造，一键处理日常活动，解放双手，畅玩无忧！
+  tagline: 零编码基础 · 强大识别 · 灵活扩展<br>日常、活动、高难关卡从此拿捏，畅玩无忧 🐾
   actions:
     - theme: brand
-      text: 快速开始
+      text: 开始使用
       link: '#quick-start-popup'
     - theme: alt
       text: 开发手册

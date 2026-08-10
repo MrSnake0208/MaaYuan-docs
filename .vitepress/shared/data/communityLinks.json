@@ -1,6 +1,6 @@
 {
-  "title": "工具与社区链接",
-  "description": "欢迎投稿共建社区~",
+  "title": "相关工具与社区项目",
+  "description": "欢迎共建社区~",
   "links": [
     {
       "icon": "📤",
@@ -117,7 +117,7 @@
       "icon": "📖",
       "text": "代号鸢攻略网站",
       "href": "https://yuanguider.com/",
-      "external": false,
+      "external": true,
       "author": {
         "name": "YuanGuider",
         "color": "#8B5CF6"

@@ -8,6 +8,13 @@ const announcementMarkdownRenderer = await createMarkdownRenderer(process.cwd())
 const announcementNavMenuItems = createAnnouncementNavMenuItems(content =>
   announcementMarkdownRenderer.render(content)
 );
+const icpBeianNumber = process.env.ICP_BEIAN_NUMBER?.trim();
+const footerMessage = [
+  'MaaYuan 为免费开源项目，欢迎前往 <a href="https://github.com/MrSnake0208/MaaYuan-docs" target="_blank" rel="noreferrer">GitHub</a> 关注文档更新。',
+  icpBeianNumber
+    ? `<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">${icpBeianNumber}</a>`
+    : "",
+].filter(Boolean).join("<br>");
 
 export default defineConfig({
   title: "MaaYuan Docs",
@@ -164,7 +171,7 @@ export default defineConfig({
         logo: "/icon.png",
         socialLinks: [{ icon: "github", link: "https://github.com/MrSnake0208/MaaYuan-docs" }],
         footer: {
-          message: 'MaaYuan 为免费开源项目，欢迎前往 <a href="https://github.com/MrSnake0208/MaaYuan-docs" target="_blank" rel="noreferrer">GitHub</a> 关注文档更新。',
+          message: footerMessage,
           copyright: 'MaaYuan Docs · Built with VitePress',
         },
       },

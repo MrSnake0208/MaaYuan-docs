@@ -1,0 +1,81 @@
+name: Deploy VitePress to Mainland VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      ICP_BEIAN_NUMBER: ${{ vars.ICP_BEIAN_NUMBER }}
+      DEPLOY_PATH: /var/www/maayuan-docs
+      TMP_DEPLOY_PATH: /tmp/maayuan-docs_mainland_tmp
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate mainland deployment configuration
+        env:
+          MAINLAND_SERVER_HOST: ${{ secrets.MAINLAND_SERVER_HOST }}
+          MAINLAND_SERVER_USER: ${{ secrets.MAINLAND_SERVER_USER }}
+          MAINLAND_SERVER_SSH_KEY: ${{ secrets.MAINLAND_SERVER_SSH_KEY }}
+          MAINLAND_SERVER_PORT: ${{ secrets.MAINLAND_SERVER_PORT }}
+        run: |
+          test -n "$ICP_BEIAN_NUMBER" || { echo "ICP_BEIAN_NUMBER repository variable is required"; exit 1; }
+          test -n "$MAINLAND_SERVER_HOST" || { echo "MAINLAND_SERVER_HOST secret is required"; exit 1; }
+          test -n "$MAINLAND_SERVER_USER" || { echo "MAINLAND_SERVER_USER secret is required"; exit 1; }
+          test -n "$MAINLAND_SERVER_SSH_KEY" || { echo "MAINLAND_SERVER_SSH_KEY secret is required"; exit 1; }
+          test -n "$MAINLAND_SERVER_PORT" || { echo "MAINLAND_SERVER_PORT secret is required"; exit 1; }
+
+      - name: Build mainland VitePress application
+        run: pnpm run docs:build
+
+      - name: Upload new version to tmp folder
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.MAINLAND_SERVER_HOST }}
+          username: ${{ secrets.MAINLAND_SERVER_USER }}
+          key: ${{ secrets.MAINLAND_SERVER_SSH_KEY }}
+          port: ${{ secrets.MAINLAND_SERVER_PORT }}
+          source: .vitepress/dist/*
+          target: ${{ env.TMP_DEPLOY_PATH }}/
+          overwrite: true
+          strip_components: 2
+
+      - name: Atomically switch release
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.MAINLAND_SERVER_HOST }}
+          username: ${{ secrets.MAINLAND_SERVER_USER }}
+          key: ${{ secrets.MAINLAND_SERVER_SSH_KEY }}
+          port: ${{ secrets.MAINLAND_SERVER_PORT }}
+          script: |
+            sudo mkdir -p "$(dirname '${{ env.DEPLOY_PATH }}')"
+            sudo rm -rf "${{ env.DEPLOY_PATH }}_old"
+            sudo mv "${{ env.DEPLOY_PATH }}" "${{ env.DEPLOY_PATH }}_old" || true
+            sudo mv "${{ env.TMP_DEPLOY_PATH }}" "${{ env.DEPLOY_PATH }}"
+            sudo rm -rf "${{ env.DEPLOY_PATH }}_old"
+            echo "✅ Switched mainland site to the new version successfully"

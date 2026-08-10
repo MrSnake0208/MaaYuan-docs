@@ -10,7 +10,7 @@ const announcementNavMenuItems = createAnnouncementNavMenuItems(content =>
 );
 const icpBeianNumber = process.env.ICP_BEIAN_NUMBER?.trim();
 const footerMessage = [
-  'MaaYuan 为免费开源项目，欢迎前往 <a href="https://github.com/MrSnake0208/MaaYuan-docs" target="_blank" rel="noreferrer">GitHub</a> 关注文档更新。',
+  'MaaYuan Docs 为免费开源项目，欢迎前往 <a href="https://github.com/MrSnake0208/MaaYuan-docs" target="_blank" rel="noreferrer">GitHub</a> 关注文档更新。',
   icpBeianNumber
     ? `<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">${icpBeianNumber}</a>`
     : "",

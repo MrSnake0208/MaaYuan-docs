@@ -13,7 +13,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      ICP_BEIAN_NUMBER: ${{ vars.ICP_BEIAN_NUMBER }}
+      ICP_BEIAN_NUMBER: ${{ secrets.ICP_BEIAN_NUMBER }}
       DEPLOY_PATH: /var/www/maayuan-docs
       TMP_DEPLOY_PATH: /tmp/maayuan-docs_mainland_tmp
 

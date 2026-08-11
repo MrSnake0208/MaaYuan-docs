@@ -41,6 +41,6 @@
   3. 最后提问：根据以上日志信息，帮我分析可能是什么方面的问题，并告诉我如何解决；
   4. 尝试根据AI的回答解决问题。
 
-### 反馈至`GitHub`的方法：
+<!-- ### 反馈至`GitHub`的方法：
   1. [给maa提issue的方法](https://www.bilibili.com/video/BV1GN4y147cg/)
-  2. `MaaYuan` 的地址请查看[【加入我们】](../Manual/JoinUs.html#%E4%B8%BB%E8%A6%81%E9%A1%B9%E7%9B%AE)
+  2. `MaaYuan` 的地址请查看[【加入我们】](../Manual/JoinUs.html#%E4%B8%BB%E8%A6%81%E9%A1%B9%E7%9B%AE) -->

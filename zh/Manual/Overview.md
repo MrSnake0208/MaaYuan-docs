@@ -11,12 +11,12 @@
 
 ## MaaYuan 是什么
 
-- `MaaYuan` 基于 [**MaaFramework**](https://github.com/MaaXYZ/MaaFramework) 的代号鸢/如鸢小助手。图像技术 + 模拟控制，解放双手！
+<!-- - `MaaYuan` 基于 [**MaaFramework**](https://github.com/MaaXYZ/MaaFramework) 的代号鸢/如鸢小助手。图像技术 + 模拟控制，解放双手！ -->
 - `MaaYuan` 属于外置框架并非外挂，本质是精确识图连点器！
   - “加速”“全局扫荡”等功能属于外挂能力，MaaYuan 不会提供，也坚决抵制此类服务。
   - 本软件仅通过游戏提供的用户界面与游戏程序进行交互，不会读取或修改游戏的文件或代码。
 - `MaaYuan` 是免费提供下载使用，禁止以代下载盈利！
-- `Windows` 端图形界面基于 [**MFAWPF**](https://github.com/SweetSmellFox/MFAWPF)。
+<!-- - `Windows` 端图形界面基于 [**MFAWPF**](https://github.com/SweetSmellFox/MFAWPF)。 -->
 
 ## MaaYuan 能做什么
 

@@ -4,9 +4,11 @@ import { navPopoverData } from "./shared/navPopover.mjs";
 import { head } from "./config/head";
 import { heroRandomImagesPlugin } from "./plugins/heroRandomImages.mjs";
 
-const announcementMarkdownRenderer = await createMarkdownRenderer(process.cwd());
-const announcementNavMenuItems = createAnnouncementNavMenuItems(content =>
-  announcementMarkdownRenderer.render(content)
+const announcementMarkdownRenderer = await createMarkdownRenderer(
+  process.cwd(),
+);
+const announcementNavMenuItems = createAnnouncementNavMenuItems((content) =>
+  announcementMarkdownRenderer.render(content),
 );
 const icpBeianNumber = process.env.ICP_BEIAN_NUMBER?.trim();
 const footerMessage = [
@@ -14,11 +16,14 @@ const footerMessage = [
   icpBeianNumber
     ? `<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">${icpBeianNumber}</a>`
     : "",
-].filter(Boolean).join("<br>");
+]
+  .filter(Boolean)
+  .join("<br>");
 
 export default defineConfig({
   title: "MaaYuan 文档站",
-  description: "MaaYuan 是代号鸢/如鸢玩家的实用助手，日常、活动、高难关卡直接拿捏，解放双手，畅玩无忧！立即了解如何使用或参与开发 MaaYuan，并查看更多代号鸢/如鸢攻略与实用工具。",
+  description:
+    "MaaYuan 是代号鸢/如鸢玩家的实用助手，日常、活动、高难关卡直接拿捏，解放双手，畅玩无忧！立即了解如何使用或参与开发 MaaYuan，并查看更多代号鸢/如鸢攻略与实用工具。",
   head,
   vite: {
     plugins: [heroRandomImagesPlugin()],
@@ -41,56 +46,83 @@ export default defineConfig({
         nav: [
           {
             component: "NavPopoverBadge",
-            props: { ...navPopoverData, link: "/Started/ConnectionAndUpdate#更新设置" },
+            props: {
+              ...navPopoverData,
+              link: "/Started/ConnectionAndUpdate#更新设置",
+            },
           },
           {
             text: "📢 公告",
             items: announcementNavMenuItems,
           },
           {
-            text: '📖 使用手册',
+            text: "📖 使用手册",
             items: [
-              { text: '快速开始', link: '/Started/Install' },
-              { text: '关于MaaYuan', link: '/Manual/Overview' },
-              { text: '功能介绍', link: '/Features/HomeInterface' },
-              { text: '任务介绍', link: '/Activity/Current' },
-              { text: '常见问题', link: '/FAQ/01-general-issues' },
-            ],
-          },
-          { 
-            text: '🛠️ 开发手册', 
-            items: [
-              { text: "MaaYuan零基础开发指南", link: "/Developer/0.0-MaaYuan零基础开发指南" },
-              { text: "开发工具介绍", link: "/Developer/0.1-开发工具介绍" },
-              { text: "MaaYuan开发规范", link: "/Developer/1.0-MaaYuan开发规范" },
-              { text: "节点信息输出", link: "/Developer/1.1-节点信息输出" },
-              { text: "interface字段配置", link: "/Developer/1.2-interface字段配置" },
-              { text: "日常行动通用模块", link: "/Developer/4.1-日常行动通用模块" },
-              { text: "其它通用模块", link: "/Developer/4.3-其它通用模块" },
+              { text: "快速开始", link: "/Started/Install" },
+              { text: "关于MaaYuan", link: "/Manual/Overview" },
+              { text: "功能介绍", link: "/Features/HomeInterface" },
+              { text: "任务介绍", link: "/Activity/Current" },
+              { text: "常见问题", link: "/FAQ/01-general-issues" },
             ],
           },
           {
-            text: '🔗 友情链接',
+            text: "🛠️ 开发手册",
             items: [
-              { text: 'Maa', link: 'https://maa.plus/' },
-              { text: 'biubiu', link: 'https://www.biubiu001.com/?cfrom=maayuan' },
-              { text: 'Mirror酱', link: 'https://mirrorchyan.com/zh/projects?rid=MaaYuan&source=navtop' },
-              { text: 'MaaLYSK', link: 'https://maalysk.top/zh_cn/' },
-              { text: '代号鸢BWiki', link: 'https://wiki.biligame.com/yuan/%E9%A6%96%E9%A1%B5' },
+              {
+                text: "MaaYuan零基础开发指南",
+                link: "/Developer/0.0-MaaYuan零基础开发指南",
+              },
+              { text: "开发工具介绍", link: "/Developer/0.1-开发工具介绍" },
+              {
+                text: "MaaYuan开发规范",
+                link: "/Developer/1.0-MaaYuan开发规范",
+              },
+              { text: "节点信息输出", link: "/Developer/1.1-节点信息输出" },
+              {
+                text: "interface字段配置",
+                link: "/Developer/1.2-interface字段配置",
+              },
+              {
+                text: "日常行动通用模块",
+                link: "/Developer/4.1-日常行动通用模块",
+              },
+              { text: "其它通用模块", link: "/Developer/4.3-其它通用模块" },
             ],
           },
+          // {
+          //   text: '🔗 友情链接',
+          //   items: [
+          //     { text: 'Maa', link: 'https://maa.plus/' },
+          //     { text: 'biubiu', link: 'https://www.biubiu001.com/?cfrom=maayuan' },
+          //     { text: 'Mirror酱', link: 'https://mirrorchyan.com/zh/projects?rid=MaaYuan&source=navtop' },
+          //     { text: 'MaaLYSK', link: 'https://maalysk.top/zh_cn/' },
+          //     { text: '代号鸢BWiki', link: 'https://wiki.biligame.com/yuan/%E9%A6%96%E9%A1%B5' },
+          //   ],
+          // },
         ],
         sidebar: {
           "/Developer/": [
             {
               text: "🛠️ 开发手册",
               items: [
-                { text: "MaaYuan零基础开发指南", link: "/Developer/0.0-MaaYuan零基础开发指南" },
+                {
+                  text: "MaaYuan零基础开发指南",
+                  link: "/Developer/0.0-MaaYuan零基础开发指南",
+                },
                 { text: "开发工具介绍", link: "/Developer/0.1-开发工具介绍" },
-                { text: "MaaYuan开发规范", link: "/Developer/1.0-MaaYuan开发规范" },
+                {
+                  text: "MaaYuan开发规范",
+                  link: "/Developer/1.0-MaaYuan开发规范",
+                },
                 { text: "节点信息输出", link: "/Developer/1.1-节点信息输出" },
-                { text: "interface字段配置", link: "/Developer/1.2-interface字段配置" },
-                { text: "日常行动通用模块", link: "/Developer/4.1-日常行动通用模块" },
+                {
+                  text: "interface字段配置",
+                  link: "/Developer/1.2-interface字段配置",
+                },
+                {
+                  text: "日常行动通用模块",
+                  link: "/Developer/4.1-日常行动通用模块",
+                },
                 { text: "其它通用模块", link: "/Developer/4.3-其它通用模块" },
               ],
             },
@@ -146,7 +178,7 @@ export default defineConfig({
               items: [
                 { text: "当前活动", link: "/Activity/Current" },
                 { text: "常驻任务", link: "/Activity/Permanent" },
-                { text: "往期任务", link: "/Activity/EventArchive"},
+                { text: "往期任务", link: "/Activity/EventArchive" },
               ],
             },
           ],
@@ -163,17 +195,23 @@ export default defineConfig({
           prev: "上一篇",
           next: "下一篇",
         },
-        editLink: {
-          pattern: "https://github.com/MrSnake0208/MaaYuan-docs/edit/main/:path",
-          text: "在 GitHub 上编辑此页",
-        },
+        // editLink: {
+        //   pattern:
+        //     "https://github.com/MrSnake0208/MaaYuan-docs/edit/main/:path",
+        //   text: "在 GitHub 上编辑此页",
+        // },
         siteTitle: "MaaYuan",
         logo: "/icon.png",
-        socialLinks: [{ icon: "github", link: "https://github.com/MrSnake0208/MaaYuan-docs" }],
-        footer: {
-          message: footerMessage,
-          copyright: 'MaaYuan Docs · Built with VitePress',
-        },
+        // socialLinks: [
+        //   {
+        //     icon: "github",
+        //     link: "https://github.com/MrSnake0208/MaaYuan-docs",
+        //   },
+        // ],
+        // footer: {
+        //   message: footerMessage,
+        //   copyright: "MaaYuan Docs · Built with VitePress",
+        // },
       },
     },
   },

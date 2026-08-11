@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ICP_BEIAN_NUMBER: ${{ secrets.ICP_BEIAN_NUMBER }}
+      PUBLIC_SECURITY_BEIAN_NUMBER: ${{ secrets.PUBLIC_SECURITY_BEIAN_NUMBER }}
       TMP_DEPLOY_PATH: /var/www/maayuan-docs-staging/incoming
 
     steps:
@@ -47,7 +48,10 @@ jobs:
           MAINLAND_SERVER_SSH_KEY: ${{ secrets.MAINLAND_SERVER_SSH_KEY }}
           MAINLAND_SERVER_PORT: ${{ secrets.MAINLAND_SERVER_PORT }}
         run: |
-          test -n "$ICP_BEIAN_NUMBER" || { echo "ICP_BEIAN_NUMBER repository variable is required"; exit 1; }
+          test -n "$ICP_BEIAN_NUMBER" || { echo "ICP_BEIAN_NUMBER repository secret is required"; exit 1; }
+          if test -n "$PUBLIC_SECURITY_BEIAN_NUMBER"; then
+            test -n "$(printf '%s' "$PUBLIC_SECURITY_BEIAN_NUMBER" | tr -cd '0-9')" || { echo "PUBLIC_SECURITY_BEIAN_NUMBER must contain its numeric record code"; exit 1; }
+          fi
           test -n "$MAINLAND_SERVER_HOST" || { echo "MAINLAND_SERVER_HOST secret is required"; exit 1; }
           test -n "$MAINLAND_SERVER_USER" || { echo "MAINLAND_SERVER_USER secret is required"; exit 1; }
           test -n "$MAINLAND_SERVER_SSH_KEY" || { echo "MAINLAND_SERVER_SSH_KEY secret is required"; exit 1; }

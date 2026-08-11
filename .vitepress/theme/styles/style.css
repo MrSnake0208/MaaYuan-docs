@@ -375,6 +375,39 @@ body,
   width: 100% !important;
 }
 
+.VPFooter .footer-beian-links {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.VPFooter .footer-beian-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.VPFooter .footer-beian-icon {
+  width: 18px;
+  height: 20px;
+  margin-right: 4px;
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .VPFooter .footer-beian-links {
+    gap: 6px;
+    font-size: 11px;
+  }
+
+  .VPFooter .footer-beian-icon {
+    width: 14px;
+    height: 16px;
+    margin-right: 3px;
+  }
+}
+
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition: opacity 0.2s ease;

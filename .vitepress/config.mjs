@@ -9,10 +9,22 @@ const announcementNavMenuItems = createAnnouncementNavMenuItems(content =>
   announcementMarkdownRenderer.render(content)
 );
 const icpBeianNumber = process.env.ICP_BEIAN_NUMBER?.trim();
-const footerMessage = [
-  'MaaYuan Docs 为免费开源项目，欢迎前往 <a href="https://github.com/MrSnake0208/MaaYuan-docs" target="_blank" rel="noreferrer">GitHub</a> 关注文档更新。',
+const publicSecurityBeianNumber = process.env.PUBLIC_SECURITY_BEIAN_NUMBER?.trim();
+const publicSecurityRecordCode = publicSecurityBeianNumber?.match(/\d+/g)?.join("");
+const footerMessage =
+  'MaaYuan Docs 为免费开源项目，欢迎前往 <a href="https://github.com/syoius/MaaYuan-docs" target="_blank" rel="noreferrer">GitHub</a> 关注文档更新。';
+const footerBeianLinks = [
+  publicSecurityBeianNumber && publicSecurityRecordCode
+    ? `<a class="footer-beian-link" href="https://beian.mps.gov.cn/#/query/webSearch?code=${publicSecurityRecordCode}" target="_blank" rel="noreferrer"><img class="footer-beian-icon" src="/beian-gongan.png" alt="公安备案图标" width="18" height="20">${publicSecurityBeianNumber}</a>`
+    : "",
   icpBeianNumber
-    ? `<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">${icpBeianNumber}</a>`
+    ? `<a class="footer-beian-link" href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">${icpBeianNumber}</a>`
+    : "",
+].filter(Boolean);
+const footerCopyright = [
+  'MaaYuan Docs · Built with VitePress',
+  footerBeianLinks.length
+    ? `<span class="footer-beian-links">${footerBeianLinks.join("")}</span>`
     : "",
 ].filter(Boolean).join("<br>");
 
@@ -172,7 +184,7 @@ export default defineConfig({
         socialLinks: [{ icon: "github", link: "https://github.com/MrSnake0208/MaaYuan-docs" }],
         footer: {
           message: footerMessage,
-          copyright: 'MaaYuan Docs · Built with VitePress',
+          copyright: footerCopyright,
         },
       },
     },

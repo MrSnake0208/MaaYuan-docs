@@ -123,6 +123,18 @@
         "color": "#8B5CF6"
       },
       "more": false
+    },
+    {
+      "icon": "⭐",
+      "text": "星石整理",
+      "href": "https://yuanstar.maayuan.com/",
+      "external": true,
+      "author": {
+        "name": "Drifty Yan",
+        "color": "#8D676D",
+        "background": "#F1E4E7"
+      },
+      "more": false
     }
   ]
 }

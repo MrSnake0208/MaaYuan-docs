@@ -89,6 +89,8 @@ export default defineConfig({
               { text: 'Mirror酱', link: 'https://mirrorchyan.com/zh/projects?rid=MaaYuan&source=navtop' },
               { text: 'MaaLYSK', link: 'https://maalysk.top/zh_cn/' },
               { text: '代号鸢BWiki', link: 'https://wiki.biligame.com/yuan/%E9%A6%96%E9%A1%B5' },
+              { text: '小红书', link: 'https://www.xiaohongshu.com/user/profile/685e3301000000001b0229ed' },
+              { text: 'B站', link: 'https://space.bilibili.com/3690998968355771' },
             ],
           },
         ],
